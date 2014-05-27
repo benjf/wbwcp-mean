@@ -1,0 +1,32 @@
+[
+  {
+    name: 'Benj Fredrick',
+    email: 'benj.fredrick@gmail.com',
+    role: 'admin',
+    password: 'changeme'
+  },
+  {
+    name: 'Andy Hieb',
+    email: 'arh1@dtek.net',
+    role: 'admin',
+    password: 'changeme'
+  },
+  {
+    name: 'Rhys Daunic',
+    email: 'rhys@themediaspot.org',
+    role: 'admin',
+    password: 'changeme'
+  },
+  {
+    name: 'Andy Shirey',
+    email: 'ashirey_sf@yahoo.com',
+    role: 'admin',
+    password: 'changeme'
+  },
+  {
+    name: 'Joe Destefano',
+    email: 'jdseph@gmail.com',
+    role: 'admin',
+    password: 'changeme'
+  }
+]

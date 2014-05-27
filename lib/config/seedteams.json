@@ -1,0 +1,233 @@
+[
+  {
+    name: 'Argentina',
+    code: 'arg',
+    flagImage: 'ar.png',
+    ranking: 7,
+    group: 'F'
+  },
+  {
+    name: 'Austrailia',
+    code: 'aus',
+    flagImage: 'au.png',
+    ranking: 59,
+    group: 'B'
+  },
+  {
+    name: 'Bosnia-Herzegovina',
+    code: 'bih',
+    flagImage: 'ba.png',
+    ranking: 25,
+    group: 'F'
+  },
+  {
+    name: 'Belgium',
+    code: 'bel',
+    flagImage: 'be.png',
+    ranking: 12,
+    group: 'H'
+  },
+  {
+    name: 'Brazil',
+    code: 'bra',
+    flagImage: 'br.png',
+    ranking: 4,
+    group: 'A'
+  },
+  {
+    name: 'Switzerland',
+    code: 'sui',
+    flagImage: 'ch.png',
+    ranking: 8,
+    group: 'E'
+  },
+  {
+    name: 'Ivory Coast',
+    code: 'civ',
+    flagImage: 'ci.png',
+    ranking: 21,
+    group: 'C'
+  },
+  {
+    name: 'Chile',
+    code: 'chi',
+    flagImage: 'cl.png',
+    ranking: 13,
+    group: 'B'
+  },
+  {
+    name: 'Cameroon',
+    code: 'cmr',
+    flagImage: 'cm.png',
+    ranking: 50,
+    group: 'A'
+  },
+  {
+    name: 'Columbia',
+    code: 'col',
+    flagImage: 'co.png',
+    ranking: 5,
+    group: 'C'
+  },
+  {
+    name: 'Costa Rica',
+    code: 'crc',
+    flagImage: 'cr.png',
+    ranking: 34,
+    group: 'D'
+  },
+  {
+    name: 'Germany',
+    code: 'ger',
+    flagImage: 'de.png',
+    ranking: 2,
+    group: 'G'
+  },
+  {
+    name: 'Algeria',
+    code: 'alg',
+    flagImage: 'dz.png',
+    ranking: 25,
+    group: 'H'
+  },
+  {
+    name: 'Ecuador',
+    code: 'ecu',
+    flagImage: 'ec.png',
+    ranking: 28,
+    group: 'E'
+  },
+  {
+    name: 'England',
+    code: 'eng',
+    flagImage: '_England.png',
+    ranking: 11,
+    group: 'D'
+  },
+  {
+    name: 'Spain',
+    code: 'esp',
+    flagImage: 'es.png',
+    ranking: 1,
+    group: 'B'
+  },
+  {
+    name: 'France',
+    code: 'fra',
+    flagImage: 'fr.png',
+    ranking: 16,
+    group: 'E'
+  },
+  {
+    name: 'Ghana',
+    code: 'gha',
+    flagImage: 'gh.png',
+    ranking: 38,
+    group: 'G'
+  },
+  {
+    name: 'Greece',
+    code: 'gre',
+    flagImage: 'gr.png',
+    ranking: 10,
+    group: 'C'
+  },
+  {
+    name: 'Honduras',
+    code: 'hon',
+    flagImage: 'hn.png',
+    ranking: 30,
+    group: 'E'
+  },
+  {
+    name: 'Croatia',
+    code: 'cro',
+    flagImage: 'hr.png',
+    ranking: 20,
+    group: 'A'
+  },
+  {
+    name: 'Iran',
+    code: 'irn',
+    flagImage: 'ir.png',
+    ranking: 37,
+    group: 'F'
+  },
+  {
+    name: 'Italy',
+    code: 'ita',
+    flagImage: 'it.png',
+    ranking: 9,
+    group: 'D'
+  },
+  {
+    name: 'Japan',
+    code: 'jpn',
+    flagImage: 'jp.png',
+    ranking: 47,
+    group: 'C'
+  },
+  {
+    name: 'South Korea',
+    code: 'kor',
+    flagImage: 'kr.png',
+    ranking: 55,
+    group: 'H'
+  },
+  {
+    name: 'Mexico',
+    code: 'mex',
+    flagImage: 'mx.png',
+    ranking: 19,
+    group: 'A'
+  },
+  {
+    name: 'Nigeria',
+    code: 'nga',
+    flagImage: 'ng.png',
+    ranking: 44,
+    group: 'F'
+  },
+  {
+    name: 'Netherlands',
+    code: 'ned',
+    flagImage: 'nl.png',
+    ranking: 15,
+    group: 'B'
+  },
+  {
+    name: 'Portugal',
+    code: 'por',
+    flagImage: 'pt.png',
+    ranking: 3,
+    group: 'G'
+  },
+  {
+    name: 'Russia',
+    code: 'rus',
+    flagImage: 'ru.png',
+    ranking: 18,
+    group: 'H'
+  },
+  {
+    name: 'United States',
+    code: 'usa',
+    flagImage: 'us.png',
+    ranking: 14,
+    group: 'G'
+  },
+  {
+    name: 'Uruguay',
+    code: 'uru',
+    flagImage: 'uy.png',
+    ranking: 6,
+    group: 'D'
+  },
+  {
+    name: 'TBD',
+    code: 'tbd',
+    flagImage: '_United-Nations.png',
+    ranking: 1000,
+    group: 'X'
+  }
+]

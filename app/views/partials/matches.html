@@ -1,0 +1,84 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Picks for: <select ng-change="changeUser()" ng-model="currentUser" ng-options="(user.teamName +' - '+ user.name) for user in users track by user._id"></select></h1>
+
+    <ul class="nav nav-tabs">
+      <li ng-class="{active: activeTab == 'group' }"><a ng-click='activeTab = "group"'>Group Stage</a></li>
+      <li ng-class="{active: activeTab == 'finals' }"><a ng-click='activeTab = "finals"'>Knock-out Stage</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div ng-switch='activeTab'>
+
+        <!-- round 1 -->
+        <div ng-switch-when='group'>
+          <!-- ng-repeat for Match -->
+          <div class="match" ng-repeat="match in firstround">
+            
+            <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
+            
+            <form class="form" name="pickForm" novalidate>
+              <input type="hidden" name="match_id" value="{{ match._id }}" />
+              <!-- left "box" -->
+              <div class="col-sm-4">
+                <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
+                {{ match.team1.name }}<br />
+                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w+2:1')">W + 2</button>
+                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w:1')">Win</button>
+              </div>
+              <!-- middle "box" -->
+              <div class="col-sm-3">
+                <div ng-if="currentUser.role == 'admin'"><a href="match/edit/{{ match._id }}">Edit Match</a></div>
+                Match #{{ match.matchNumber }}<br />
+                Group {{ match.group }}<br />
+                {{ match.datetime | date : 'h:mma' }} (local time)<br /><!-- if populated, show score instead of time -->
+                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
+              </div>
+              <!-- right "box" -->
+              <div class="col-sm-4">
+                <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
+                {{ match.team2.name }}<br />
+                <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w:2'}" ng-click="savePick(currentUser._id, match._id, 'w:2')">Win</button>
+                <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:2'}" ng-click="savePick(currentUser._id, match._id, 'w+2:2')">W + 2</button>
+              </div>
+            </form>
+
+          </div><!-- match -->
+        </div>
+        <!-- end round 1 -->
+
+        <!-- knock-out round -->
+        <div ng-switch-when='finals'>
+          <!-- ng-repeat for Match -->
+          <div class="match" ng-repeat="match in finals">
+            
+            <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
+          
+            <!-- left "box" -->
+            <div class="col-sm-4">
+              <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
+              {{ match.team1.name }}<br />
+              <button class="btn btn-sm btn-primary" type="submit">Win</button>
+            </div>
+            <!-- middle "box" -->
+            <div class="col-sm-3">
+              {{ match.datetime | date : 'h:mma' }} (local time)<br /><!-- if populated, show score instead of time -->
+              {{ match.round }}
+            </div>
+            <!-- right "box" -->
+            <div class="col-sm-4">
+              <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
+              {{ match.team2.name }}<br />
+              <button class="btn btn-sm btn-primary" type="submit">Win</button>
+            </div>
+
+          </div><!-- match -->
+        </div>
+
+      </div><!-- ng-switch -->
+    </div><!-- tab-content -->
+
+  </div>
+ </div>
