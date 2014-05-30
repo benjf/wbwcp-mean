@@ -17,6 +17,7 @@
     "connect-mongo": "git+https://github.com/kcbanner/connect-mongo.git#master",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
+    "password-reset": "~0.1.4",
     "ejs": "~0.8.4"
   },
   "devDependencies": {
