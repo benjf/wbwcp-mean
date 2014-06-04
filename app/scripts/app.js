@@ -35,6 +35,11 @@ angular.module('wbwcpNgApp', [
         controller: 'MatchesCtrl',
         authenticate: true
       })
+      .when('/match/edit/:id', {
+        templateUrl: 'partials/matchedit',
+        controller: 'MatchEditCtrl',
+        authenticate: true
+      })
       .otherwise({
         redirectTo: '/'
       });

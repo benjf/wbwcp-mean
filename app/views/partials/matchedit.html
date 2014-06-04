@@ -1,0 +1,34 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+	<form name="editMatch" ng-submit="saveMatch(editMatch)">
+  	<div class="col-sm-12" ng-controller="MatchEditCtrl">
+	  	<h1>Edit Match: #{{ matchEdit.matchNumber }}</h1>
+
+	    <!-- team 1 -->
+	    <div class="col-sm-4">
+	      Team 1: <select name="team1" ng-model="matchEdit.team1" ng-options="team.name for team in teams track by team._id"></select><br />
+	      Score: <input type="text" size="3" name="score1" ng-model="matchEdit.score1" /><br />
+	    </div>
+
+	    <!-- shared -->
+	    <div class="col-sm-4">
+	      Round: <select name="round" ng-model="matchEdit.round" ng-options="round for round in rounds"></select><br />
+	      Group: <select name="group"ng-model="matchEdit.group" ng-options="group for group in groups"></select><br />
+	      Date/Time: {{ matchEdit.datetime | date : 'MMMM d, h:mma' }}<br />
+	      Result: <select name="result"ng-model="matchEdit.result" ng-options="result.name for result in results track by result.value"></select>
+	    </div>
+
+	    <!-- team 2 -->
+	    <div class="col-sm-4">
+	      Team 2: <select name="team2" ng-model="matchEdit.team2" ng-options="team.name for team in teams track by team._id"></select><br />
+	      Score: <input type="text" size="3" name="score2" ng-model="matchEdit.score2" /><br />
+	    </div>
+
+	  </div>
+	  <div>
+	  	<p class="help-block"> {{ matchMessage }} </p>
+    	<input type="submit" class="btn btn-primary" />
+    </div>
+  </form>
+</div>

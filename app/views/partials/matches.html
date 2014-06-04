@@ -10,6 +10,7 @@
     </ul>
 
     <div class="tab-content">
+      Team/Country (<a href="http://www.fifa.com/worldranking/index.html" target="_blank">FIFA ranking</a>)
       <div ng-switch='activeTab'>
 
         <!-- round 1 -->
@@ -20,11 +21,10 @@
             <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
             
             <form class="form" name="pickForm" novalidate>
-              <input type="hidden" name="match_id" value="{{ match._id }}" />
               <!-- left "box" -->
               <div class="col-sm-4">
                 <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
-                {{ match.team1.name }}<br />
+                {{ match.team1.name }} ({{ match.team1.ranking }})<br />
                 <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w+2:1')">W + 2</button>
                 <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w:1')">Win</button>
               </div>
@@ -33,13 +33,13 @@
                 <div ng-if="currentUser.role == 'admin'"><a href="match/edit/{{ match._id }}">Edit Match</a></div>
                 Match #{{ match.matchNumber }}<br />
                 Group {{ match.group }}<br />
-                {{ match.datetime | date : 'h:mma' }} (local time)<br /><!-- if populated, show score instead of time -->
+                {{ match.datetime | date : 'h:mma' }} (Your time)<br /><!-- if populated, show score instead of time -->
                 <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
               </div>
               <!-- right "box" -->
               <div class="col-sm-4">
                 <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
-                {{ match.team2.name }}<br />
+                {{ match.team2.name }} ({{ match.team2.ranking }})<br />
                 <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w:2'}" ng-click="savePick(currentUser._id, match._id, 'w:2')">Win</button>
                 <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:2'}" ng-click="savePick(currentUser._id, match._id, 'w+2:2')">W + 2</button>
               </div>

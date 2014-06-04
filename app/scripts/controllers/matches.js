@@ -4,19 +4,21 @@ angular.module('wbwcpNgApp')
   .controller('MatchesCtrl', function ($scope, $http, User) {
     $scope.errors = {};
 
+    // Set up data for the /matches page
     $scope.activeTab = 'group';
 
+    // get all matches from the back-end
     $http.get('/api/matches').success(function(matches) {
-      // send matches to the front-end
       $scope.firstround = matches.slice(0, 48);
       $scope.finals = matches.slice(48);
     });
 
+    // get all users from the back-end
     $http.get('/api/users').success(function(users) {
-      // send users to the front-end
       $scope.users = users;
     });
 
+    // get picks for the currently displayed user
     $scope.currentUser = User.get({}, function() {
       if ($scope.currentUser._id) {
         $http.get('/api/picks/' + $scope.currentUser._id).success(function(picks) {
@@ -25,7 +27,6 @@ angular.module('wbwcpNgApp')
           for (var pick in picks) {
             rePicks[picks[pick].match] = picks[pick].choice;
           }
-          // send picks to the front-end
           $scope.currentPicks = rePicks;
         });
       }
