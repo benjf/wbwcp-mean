@@ -62,7 +62,7 @@ angular.module('wbwcpNgApp')
         // $http PUT with newMatchData
         $http.put('/api/match/' + $scope.matchEdit._id, newMatchData);
         // redirect to /matches
-        //$location.path('/matches');
+        $location.path('/matches');
       }
     };
   });

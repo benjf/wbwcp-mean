@@ -14,9 +14,9 @@
 	    <!-- shared -->
 	    <div class="col-sm-4">
 	      Round: <select name="round" ng-model="matchEdit.round" ng-options="round for round in rounds"></select><br />
-	      Group: <select name="group"ng-model="matchEdit.group" ng-options="group for group in groups"></select><br />
+	      Group: <select name="group" ng-model="matchEdit.group" ng-options="group for group in groups"></select><br />
 	      Date/Time: {{ matchEdit.datetime | date : 'MMMM d, h:mma' }}<br />
-	      Result: <select name="result"ng-model="matchEdit.result" ng-options="result.name for result in results track by result.value"></select>
+	      Result: <select name="result" ng-model="matchEdit.result" ng-options="result.name for result in results track by result.value"></select>
 	    </div>
 
 	    <!-- team 2 -->
