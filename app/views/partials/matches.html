@@ -33,7 +33,9 @@
                 <div ng-if="currentUser.role == 'admin'"><a href="match/edit/{{ match._id }}">Edit Match</a></div>
                 Match #{{ match.matchNumber }}<br />
                 Group {{ match.group }}<br />
-                {{ match.datetime | date : 'h:mma' }} (Your time)<br /><!-- if populated, show score instead of time -->
+                <!-- if populated, show score instead of time -->
+                <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
+                <p class="marchresult" ng-show="match.result">{{ match.score1 }} - {{ match.score2 }}</p>
                 <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
               </div>
               <!-- right "box" -->
@@ -82,3 +84,6 @@
 
   </div>
  </div>
+
+ <div ng-include="'partials/footer'" class="footer"></div>
+ 
