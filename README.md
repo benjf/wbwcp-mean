@@ -29,19 +29,19 @@ Initial dev setup:
 * start the app - during start-up, Users and Matches will be created if the mongo collections (tables) are empty.
  $ grunt serve
 
- What works:
+What works:
  * User signup (no welcome email yet)
  * User login; update password, name and team name
  * Select match "choices" for first-round games.
  * View match "choices" for other users.
+ * 'edit Match' form
+   * Calculate points/pick after Match update
 
  To Do:
  * Password reset (you currently need to know the old one, and be logged in, to create a new one)
  * User signup captcha/token/something to prevent spam registrations. Even a hard-coded "invite/registration code"
- * Create 'edit Match' UI and functionality
- * Calculate points/standings after Match update?
  * Create Standings page
  * Create UI for WB News on home page
- * Add timezone field to User model - goal of displaying match times in the user's local timezone
+ * Timezone toggle?
  * Mad UI/UX love!
  
