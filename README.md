@@ -16,32 +16,31 @@ Requirements (not sure on the miminum requirements, this is what's on my machine
 
 
 Initial dev setup:
-
 * clone this repo
 * 'cd' into the new directory
 * run 'bower install'
 * run 'npm install'
 * copy lib/config/env/test.js to lib/config/env/development.js and update the db name
 * start the mongo process (I usually just leave this running in a terminal tab)
- $ 'mongod'
+  * mongod
 * import the teams (double check the DB name!)
- $ mongoimport --db wbwcp-dev --collection teams --type json --file lib/config/seedteams.json --jsonArray
+  * mongoimport --db wbwcp-dev --collection teams --type json --file lib/config/seedteams.json --jsonArray
 * start the app - during start-up, Users and Matches will be created if the mongo collections (tables) are empty.
- $ grunt serve
+  * grunt serve
 
 What works:
- * User signup (no welcome email yet)
- * User login; update password, name and team name
- * Select match "choices" for first-round games.
- * View match "choices" for other users.
- * 'edit Match' form
-   * Calculate points/pick after Match update
+* User signup (no welcome email yet)
+* User login; update password, name and team name
+* Select match "choices" for first-round games.
+* View match "choices" for other users.
+* 'edit Match' form
+  * Calculate points/pick after Match update
 
- To Do:
- * Password reset (you currently need to know the old one, and be logged in, to create a new one)
- * User signup captcha/token/something to prevent spam registrations. Even a hard-coded "invite/registration code"
- * Create Standings page
- * Create UI for WB News on home page
- * Timezone toggle?
- * Mad UI/UX love!
+To Do:
+* Password reset (you currently need to know the old one, and be logged in, to create a new one)
+* User signup captcha/token/something to prevent spam registrations. Even a hard-coded "invite/registration code"
+* Create Standings page
+* Create UI for WB News on home page
+* Timezone toggle?
+* Mad UI/UX love!
  
