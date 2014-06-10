@@ -1,20 +1,156 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="jumbotron">
-  <h1>Hello<span ng-show="currentUser"> {{ currentUser.name }}</span>. Welcome to the Wild Bor World Cup Pool!</h1>
-  <p class="lead">
-    The wbwcp is software for a small group of people to compare footballing wits by picking World Cup match results. It's not meant for monied betting, which is illegal in some parts of the world.</p>
+  <h1><span ng-show="currentUser"> Hello {{ currentUser.name }}. </span>Welcome to the Wild Bor World Cup Pool!</h1>
 
-  <p>The wbwcp was written in 2002 and with nary an improvement, ran for the 2002, 2006, and 2010 World Cups. It's being completely rewritten for the 2014 World Cup and, not unlike the second Death Star, seems to be mostly operational. Your mileage may vary. Enjoy!</p>
-  </p>
+  <p>The wbwcp is software for a small group of people to compare footballing wits by picking World Cup match results. It's not meant for monied betting, which is often frowned-upon.</p>
+
 </div>
 
-<div class="row marketing">
-  <h3>WBWCP News</h3>
+<div class="jumbotron">
+  <h2>WBWCP News</h2>
   <div ng-repeat="thing in awesomeThings">
       <h4>{{thing.name}}</h4>
       <p>{{thing.info}}</p>
   </div>
+</div>
+
+<div class="jumbotron">
+
+  <h2 id="toc-how">How it Works</h2>
+  <ol>
+    <li>First Round
+      <ul>
+        <li><a href="#toc-first">Read the first round explanation below</a></li>
+        <li><a href="matches">Submit your picks by {{ 1402603200000 | date : 'MMM dd h:mma' }} (your time)</a></li>
+      </ul>
+    </li>
+    <li>Knockout Round
+      <ul>
+        <li><a href="#toc-ko">Read the knockout round explanation below</a></li>
+        <li><a href="matches">Submit your picks between {{ 1403820000000 | date : 'MMM dd h:mma' }} and {{ 1403971200000 | date : 'MMM dd h:mma' }} (your time)</a></li>
+      </ul>
+    </li>
+    <li>Champion
+      <ul>
+        <li>There will be a first round winner, a knockout round winner, and a grand champion</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p><strong>Note:</strong> There is only a 42 hour window to submit your knockout round pools, after the first round and before the knockout round starts!</p>
+</div>
+
+
+<div class="jumbotron">
+
+  <h2 id="toc-first">First Round</h2>
+
+    <p>For each match, pick a draw*, a winning team, or a team that will win by two or more goals on the <a href="matches">entry form</a> (before {{ 1402603200000 | date : 'MMM dd h:mma' }} (your time)). The table below shows how points will be allocated. </p>
+    <p>SO... If Spain were to play Portugal, you pick <em>Span W+2</em>, and Spain wins 2-0, 3-1, etc, you gain 6 points; if you pick <em>Portugal W</em>, and the match is a draw, you gain 0 points; if you pick <em>Spain W</em>, and Portugal wins 1-0, you lose 1 point and so on.</p>
+    <p>* This pool is only for the first round, so draws are ok.  A new pool will be started with the "knockout round", the round of 16.</p>
+
+    
+      <table border="0" cellspacing="2" cellpadding="2">
+        <tr>
+       <th>Pick</th>
+       <th>Result</th>
+       <th>Points</th>
+        </tr>
+        <tr>
+       <td>win+2 (by two or more goals)</td>
+       <td>win+2</td>
+       <td>6</td>
+        </tr>
+        <tr>
+       <td>win (by one goal)</td>
+       <td>win</td>
+       <td>4</td>
+        </tr>
+        <tr>
+       <td>win</td>
+       <td>win+2</td>
+       <td>3</td>
+        </tr>
+        <tr>
+       <td>win+2</td>
+       <td>win</td>
+       <td>2</td>
+        </tr>
+        <tr>
+       <td>draw</td>
+       <td>draw</td>
+       <td>2</td>
+        </tr>
+        <tr>
+       <td>win</td>
+       <td>draw</td>
+       <td>0</td>
+        </tr>
+        <tr>
+       <td>draw</td>
+       <td>win/loss</td>
+       <td>0</td>
+        </tr>
+        <tr>
+       <td>win+2</td>
+       <td>draw</td>
+       <td>-1</td>
+        </tr>
+        <tr>
+       <td>win</td>
+       <td>loss</td>
+       <td>-1</td>
+        </tr>
+        <tr>
+       <td>win+2</td>
+       <td>loss</td>
+       <td>-2</td>
+        </tr>
+      </table>
+
+</div>
+
+<div class="jumbotron">
+
+  <h2 id="toc-ko">Knockout Round</h2>
+
+    <p>Pick who will advance from each match on the <a href="matches">entry form</a> ({{ 1403820000000 | date : 'MMM dd h:mma' }} and {{ 1403971200000 | date : 'MMM dd h:mma' }} (your time)).   Points are allocated according to the table below.</p>
+
+    
+      <table border="0" cellspacing="2" cellpadding="2">
+        <tr>
+       <th>Pick</th>
+       <th>Points</th>
+        </tr>
+        <tr>
+       <td>Quarterfinals</td>
+       <td>2</td>
+        </tr>
+        <tr>
+       <td>Semifinals</td>
+       <td>3</td>
+        </tr>
+        <tr>
+       <td colspan="2">Bonus: If you pick all 4 semifinalists correctly, you'll be awarded 4 bonus points.</td>
+        </tr>
+        <tr>
+       <td>Third Place Match</td>
+       <td>4</td>
+        </tr>
+        <tr>
+       <td>Championship</td>
+       <td>5</td>
+        </tr>
+        <tr>
+       <td>Third Place</td>
+       <td>6</td>
+        </tr>
+        <tr>
+       <td>CHAMPION</td>
+       <td>8</td>
+        </tr>
+      </table>
 </div>
 
 <div ng-include="'partials/footer'" class="footer"></div>
