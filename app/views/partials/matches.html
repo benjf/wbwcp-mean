@@ -4,6 +4,8 @@
   <div class="col-sm-12">
     <h1>Picks for: <select ng-change="changeUser()" ng-model="currentUser" ng-options="(user.teamName +' - '+ user.name) for user in users track by user._id"></select></h1>
 
+<p>{{ beforeFirstroundCutoff }}</p>
+
     <ul class="nav nav-tabs">
       <li ng-class="{active: activeTab == 'group' }"><a ng-click='activeTab = "group"'>Group Stage</a></li>
       <li ng-class="{active: activeTab == 'finals' }"><a ng-click='activeTab = "finals"'>Knock-out Stage</a></li>
@@ -25,8 +27,10 @@
               <div class="col-sm-4">
                 <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
                 {{ match.team1.name }} ({{ match.team1.ranking }})<br />
-                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w+2:1')">W + 2</button>
-                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w:1')">Win</button>
+                <div ng-show="beforeFirstroundCutoff">
+                  <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w+2:1')">W + 2</button>
+                  <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'w:1'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'w:1')">Win</button>
+                </div>
               </div>
               <!-- middle "box" -->
               <div class="col-sm-3">
@@ -36,14 +40,18 @@
                 <!-- if populated, show score instead of time -->
                 <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
                 <p class="marchresult" ng-show="match.result">{{ match.score1 }} - {{ match.score2 }}</p>
-                <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
+                <div ng-show="beforeFirstroundCutoff">
+                  <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
+                </div> 
               </div>
               <!-- right "box" -->
               <div class="col-sm-4">
                 <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
                 {{ match.team2.name }} ({{ match.team2.ranking }})<br />
-                <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w:2'}" ng-click="savePick(currentUser._id, match._id, 'w:2')">Win</button>
-                <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:2'}" ng-click="savePick(currentUser._id, match._id, 'w+2:2')">W + 2</button>
+                <div ng-show="beforeFirstroundCutoff">
+                  <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w:2'}" ng-click="savePick(currentUser._id, match._id, 'w:2')">Win</button>
+                  <button class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[match._id] == 'w+2:2'}" ng-click="savePick(currentUser._id, match._id, 'w+2:2')">W + 2</button>
+                </div>
               </div>
             </form>
 

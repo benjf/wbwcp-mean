@@ -63,4 +63,11 @@ angular.module('wbwcpNgApp')
         $scope.currentPicks = rePicks;
       });
     };
+
+    // Do some time checks to determine if first/KO round picks can be submitted?
+    //@todo: Instead of hard-coding the appropriate times here, we should move them to a config file.
+    $scope.beforeFirstroundCutoff = Date.now() < 1402603200000 ? true : false;
+    //$scope.afterKOroundOpen = Date.now() > [match 48 kickoff + 2 hrs] ? true : false;
+    //$scope.beforeKOroundCutoff = Date.now() < [match 49 kickoff] ? true : false;
+
   });
