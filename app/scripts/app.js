@@ -41,7 +41,7 @@ angular.module('wbwcpNgApp', [
         authenticate: true
       })
       .when('/news/create', {
-        templateUrl: 'partials/thingCreate',
+        templateUrl: 'partials/thingcreate',
         controller: 'ThingCtrl',
         authenticate: true
       })
