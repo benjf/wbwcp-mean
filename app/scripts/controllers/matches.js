@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wbwcpNgApp')
-  .controller('MatchesCtrl', function ($scope, $http, User) {
+  .controller('MatchesCtrl', function ($scope, $http, User, Auth) {
     $scope.errors = {};
 
     // Set up data for the /matches page
@@ -73,4 +73,6 @@ angular.module('wbwcpNgApp')
     //$scope.afterKOroundOpen = Date.now() > [match 48 kickoff + 2 hrs] ? true : false;
     //$scope.beforeKOroundCutoff = Date.now() < [match 49 kickoff] ? true : false;
 
+    // Identify admin users.
+    $scope.isAdmin = Auth.isAdmin() ? true : false;
   });

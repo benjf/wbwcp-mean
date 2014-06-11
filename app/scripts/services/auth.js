@@ -127,5 +127,15 @@ angular.module('wbwcpNgApp')
         var user = $rootScope.currentUser;
         return !!user;
       },
+
+      /**
+       * Simple check to see if a user is an administrator
+       * 
+       * @return {Boolean}
+       */
+      isAdmin: function() {
+        return $rootScope.currentUser.role == 'admin' ? true : false;
+      },
+
     };
   });

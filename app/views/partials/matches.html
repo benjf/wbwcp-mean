@@ -2,8 +2,8 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <h1 ng-show="beforeFirstroundCutoff">Picks for: {{ currentUser.teamName +' - '+ currentUser.name }}</span></h1>
-    <h1 ng-hide="beforeFirstroundCutoff">Picks for: <select ng-change="changeUser()" ng-model="currentUser" ng-options="(user.teamName +' - '+ user.name) for user in users track by user._id"></select></h1>
+    <h1 ng-show="beforeFirstroundCutoff && !isAdmin">Picks for: {{ currentUser.teamName +' - '+ currentUser.name }}</span></h1>
+    <h1 ng-hide="beforeFirstroundCutoff && !isAdmin">Picks for: <select ng-change="changeUser()" ng-model="currentUser" ng-options="(user.teamName +' - '+ user.name) for user in users track by user._id"></select></h1>
 
     <ul class="nav nav-tabs">
       <li ng-class="{active: activeTab == 'group' }"><a ng-click='activeTab = "group"'>Group Stage</a></li>
