@@ -28,6 +28,7 @@ angular.module('wbwcpNgApp')
             rePicks[picks[pick].match] = picks[pick].choice;
           }
           $scope.currentPicks = rePicks;
+          $scope.pickCount = picks.length;
         });
       }
     });
@@ -43,6 +44,7 @@ angular.module('wbwcpNgApp')
             }
             // send picks to the front-end
             $scope.currentPicks = rePicks;
+            $scope.pickCount = picks.length;
           });
         }
       });
@@ -61,6 +63,7 @@ angular.module('wbwcpNgApp')
         }
         // send picks to the front-end
         $scope.currentPicks = rePicks;
+        $scope.pickCount = picks.length;
       });
     };
 
