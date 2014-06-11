@@ -134,7 +134,7 @@ angular.module('wbwcpNgApp')
        * @return {Boolean}
        */
       isAdmin: function() {
-        return $rootScope.currentUser.role == 'admin' ? true : false;
+        return $rootScope.currentUser.role === 'admin' ? true : false;
       },
 
     };

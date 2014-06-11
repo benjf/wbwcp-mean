@@ -40,6 +40,11 @@ angular.module('wbwcpNgApp', [
         controller: 'MatchEditCtrl',
         authenticate: true
       })
+      .when('/news/create', {
+        templateUrl: 'partials/thingCreate',
+        controller: 'ThingCtrl',
+        authenticate: true
+      })
       .otherwise({
         redirectTo: '/'
       });

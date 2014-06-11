@@ -1,0 +1,23 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+	<form name="createThing" ng-controller="ThingCtrl" ng-submit="create(createThing)">
+  	<div class="col-sm-12" >
+	  	<h1>Add WBWCP News</h1>
+
+	  	<label for="newsTitle">Title</label>
+	  	<br />
+	  	<input type="text" size="80" ng-model="newsTitle" name="newsTitle" />
+
+	  	<br />
+	  	<label for="newsBody">Body</label>
+	  	<br />
+	  	<textarea name="newsBody" ng-model="newsBody" cols="80" rows="10"></textarea>
+	  	<br />
+
+    	<input type="submit" class="btn btn-primary" />
+    </div>
+  </form>
+</div>
+
+<div ng-include="'partials/footer'" class="footer"></div>
