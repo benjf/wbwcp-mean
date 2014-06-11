@@ -96,3 +96,12 @@ p#pick-meter {
     bottom: 0px;
     right: 20px;
 }
+
+/* news */
+.jumbotron .news-item p {
+    font-size: 16px;
+    .news-date {
+        font-style: italic;
+        display: block;
+    }
+}
