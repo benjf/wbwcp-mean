@@ -11,7 +11,7 @@
   <h2>WBWCP News</h2>
   <div ng-repeat="thing in awesomeThings">
       <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
+      <p><span class="thing-date">{{thing.dateTime | date: 'MMM d hh:mma'}}</span> {{thing.info}}</p>
   </div>
 </div>
 
