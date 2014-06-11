@@ -4,8 +4,6 @@
   <div class="col-sm-12">
     <h1>Picks for: <select ng-change="changeUser()" ng-model="currentUser" ng-options="(user.teamName +' - '+ user.name) for user in users track by user._id"></select></h1>
 
-<p>{{ beforeFirstroundCutoff }}</p>
-
     <ul class="nav nav-tabs">
       <li ng-class="{active: activeTab == 'group' }"><a ng-click='activeTab = "group"'>Group Stage</a></li>
       <li ng-class="{active: activeTab == 'finals' }"><a ng-click='activeTab = "finals"'>Knock-out Stage</a></li>
