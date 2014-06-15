@@ -40,8 +40,8 @@
                 <!-- if populated, show score instead of time -->
                 <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
                 <p class="marchresult" ng-show="match.result">{{ match.score1 }} - {{ match.score2 }}<br />
-                Result: {{ match.result }}<br />
-                Pick: {{ currentPicks[match._id] }}</p>
+                Result: {{ match.result }}</p>
+                <p ng-hide="beforeFirstroundCutoff">Pick: {{ currentPicks[match._id] }}</p>
 <!--
                 <strong>Points awarded: {{ calculatePoints(match.result, currentPicks[match._id]) }}</strong>
 -->                <div ng-show="beforeFirstroundCutoff">
