@@ -24,10 +24,13 @@ angular.module('wbwcpNgApp')
         $http.get('/api/picks/' + $scope.currentUser._id).success(function(picks) {
           // array[pick.match] = pick.choice
           var rePicks = [];
+          var rePoints = [];
           for (var pick in picks) {
             rePicks[picks[pick].match] = picks[pick].choice;
+            rePoints[picks[pick].match] = picks[pick].points;
           }
           $scope.currentPicks = rePicks;
+          $scope.currentPoints = rePoints;
           $scope.pickCount = picks.length;
         });
       }
@@ -39,11 +42,14 @@ angular.module('wbwcpNgApp')
           $http.get('/api/picks/' + $scope.currentUser._id).success(function(picks) {
             // array[pick.match] = pick.choice
             var rePicks = [];
+            var rePoints = [];
             for (var pick in picks) {
               rePicks[picks[pick].match] = picks[pick].choice;
+              rePoints[picks[pick].match] = picks[pick].points;
             }
             // send picks to the front-end
             $scope.currentPicks = rePicks;
+            $scope.currentPoints = rePoints;
             $scope.pickCount = picks.length;
           });
         }
