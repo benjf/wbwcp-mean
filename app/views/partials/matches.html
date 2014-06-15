@@ -81,8 +81,16 @@
             </div>
             <!-- middle "box" -->
             <div class="col-sm-3">
-              {{ match.datetime | date : 'h:mma' }} (local time)<br /><!-- if populated, show score instead of time -->
-              {{ match.round }}
+              Round: {{ match.round }}
+              <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
+              <p class="marchresult" ng-show="match.result">Score: {{ match.score1 }} - {{ match.score2 }}</p>
+              <p ng-hide="beforeKOroundCutoff"><strong>
+                Pick: {{ currentPicks[match._id] }}
+                <span ng-show="match.result">
+                  <br />Result: {{ match.result }}
+                  <br />Points awarded: {{ currentPoints[match._id] }}
+                </span>
+              </strong></p>
             </div>
             <!-- right "box" -->
             <div class="col-sm-4">
