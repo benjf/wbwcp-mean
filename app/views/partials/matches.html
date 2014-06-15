@@ -39,12 +39,11 @@
                 Group {{ match.group }}<br />
                 <!-- if populated, show score instead of time -->
                 <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
-                <p class="marchresult" ng-show="match.result">{{ match.score1 }} - {{ match.score2 }}<br />
-                Result: {{ match.result }}<br />
-                Pick: {{ currentPicks[match._id] }}</p>
-<!--
-                <strong>Points awarded: {{ calculatePoints(match.result, currentPicks[match._id]) }}</strong>
--->                <div ng-show="beforeFirstroundCutoff">
+                <p class="marchresult" ng-show="match.result">{{ match.score1 }} - {{ match.score2 }}
+                  <br />Result: {{ match.result }}
+                  <br />Pick: {{ currentPicks[match._id] }}
+                  <br /><strong>Points: {{ match.result | getPoints:currentPicks[match._id] }}</strong></p>
+                <div ng-show="beforeFirstroundCutoff">
                   <button class="btn btn-sm btn-primary" ng-class="{'btn-success': currentPicks[match._id] == 'd'}" type="submit" ng-click="savePick(currentUser._id, match._id, 'd')">Draw</button>
                 </div> 
               </div>
