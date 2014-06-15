@@ -18,7 +18,7 @@
         <div ng-switch-when='group'>
           <p id="pick-meter">You've picked: <strong>{{ pickCount }} / 48</strong> First Round Matches</p>
           <!-- ng-repeat for Match -->
-          <div class="match" ng-repeat="match in firstround">
+          <div class="match clearfix" ng-repeat="match in firstround">
             
             <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
             
@@ -69,7 +69,7 @@
         <!-- knock-out round -->
         <div ng-switch-when='finals'>
           <!-- ng-repeat for Match -->
-          <div class="match" ng-repeat="match in finals">
+          <div class="match clearfix" ng-repeat="match in finals">
             
             <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
           
