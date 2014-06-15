@@ -75,9 +75,9 @@ angular.module('wbwcpNgApp')
 
     // Do some time checks to determine if first/KO round picks can be submitted?
     //@todo: Instead of hard-coding the appropriate times here, we should move them to a config file.
-    $scope.beforeFirstroundCutoff = Date.now() < 1402603200000 ? true : false;
-    //$scope.afterKOroundOpen = Date.now() > [match 48 kickoff + 2 hrs] ? true : false;
-    //$scope.beforeKOroundCutoff = Date.now() < [match 49 kickoff] ? true : false;
+    $scope.beforeFirstroundCutoff = Date.now() < 1402603200000 ? true : false; // Before match 1.
+    $scope.afterKOroundOpen = Date.now() > 1403816400000 ? true : false; // After match 48 + 2 hours.
+    $scope.beforeKOroundCutoff = Date.now() < 1403971200000 ? true : false; // Before match 49.
 
     // Identify admin users.
     $scope.isAdmin = Auth.isAdmin() ? true : false;

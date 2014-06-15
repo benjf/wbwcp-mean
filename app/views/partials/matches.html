@@ -77,7 +77,7 @@
             <div class="col-sm-4">
               <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
               {{ match.team1.name }}<br />
-              <button class="btn btn-sm btn-primary" type="submit">Win</button>
+              <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit">Win</button>
             </div>
             <!-- middle "box" -->
             <div class="col-sm-3">
@@ -88,7 +88,7 @@
             <div class="col-sm-4">
               <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
               {{ match.team2.name }}<br />
-              <button class="btn btn-sm btn-primary" type="submit">Win</button>
+              <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit">Win</button>
             </div>
 
           </div><!-- match -->
