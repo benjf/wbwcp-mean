@@ -44,7 +44,7 @@
                 <p ng-hide="beforeFirstroundCutoff"><strong>{{ currentUser.name }}<br />
                   Pick: {{ currentPicks[match._id] }}
                   <span ng-show="match.result">
-                    <br />Points awarded: {{ match.result | getPoints:currentPicks[match._id] }}
+                    <br />Points awarded: {{ currentPoints[match._id] }}
                   </span>
                 </strong></p>
                 <div ng-show="beforeFirstroundCutoff">
