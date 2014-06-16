@@ -26,11 +26,11 @@ angular.module('wbwcpNgApp')
           break;
         case 'w:1':
           switch(args) {
-            case 'w+2:1':
-              points = 3;
-              break;
             case 'w:1':
               points = 4;
+              break;
+            case 'w+2:1':
+              points = 3;
               break;
             case 'd':
               points = 0;
@@ -46,42 +46,47 @@ angular.module('wbwcpNgApp')
             case 'd':
               points = 2;
               break;
-            default:
+            case 'w:1':
+            case 'w:2':
               points = 0;
+              break;
+            case 'w+2:1':
+            case 'w+2:2':
+              points = -1;
               break;
           }
           break;
         case 'w:2':
           switch(args) {
-            case 'w+2:1':
-            case 'w:1':
-              points = -1;
-              break;
-            case 'd':
-              points = 0;
+            case 'w:2':
+              points = 4;
               break;
             case 'w+2:2':
               points = 3;
               break;
-            case 'w:2':
-              points = 4;
+            case 'd':
+              points = 0;
+              break;
+            case 'w+2:1':
+            case 'w:1':
+              points = -1;
               break;
           }
           break;
         case 'w+2:2':
           switch(args) {
-            case 'w+2:1':
-            case 'w:1':
-              points = -2;
-              break;
-            case 'd':
-              points = -1;
-              break;
             case 'w+2:2':
               points = 6;
               break;
             case 'w:2':
               points = 2;
+              break;
+            case 'd':
+              points = -1;
+              break;
+            case 'w+2:1':
+            case 'w:1':
+              points = -2;
               break;
           }
       }
