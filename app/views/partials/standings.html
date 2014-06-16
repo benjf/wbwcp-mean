@@ -2,17 +2,17 @@
 
 <div class="row">
   <div class="col-sm-12">
-  	<h1>Standings after {#} matches</h1>
+    <h1>Current Standings</h1>
+<!--     <h1>Standings after: <select ng-change="changeStanding()" ng-model="currentStanding" ng-options="(match.matchNumber) for match in matches track by match._id"></select> matches</h1> -->
   	<!-- standings table -->
   	<table class="table table-striped table-bordered table-hover">
   		<tr>
   			<th>Team - User</th>
   			<th>Points</th>
   		</tr>
-  		<!-- ng-repeat for each user/row -->
-  		<tr>
-  			<td>{Team Name} - {User Name}</td>
-  			<td>{Points}</td>
+  		<tr class="user" ng-repeat="user in users">
+  			<td>{{ user.teamName +' - '+ user.name }}</td>
+  			<td>{{ userPoints[user._id] }}</td>
   		</tr>
 
   	</table>
