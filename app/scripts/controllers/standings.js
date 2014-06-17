@@ -1,37 +1,29 @@
 'use strict';
 
 angular.module('wbwcpNgApp')
-  .controller('StandingsCtrl', function ($scope, $http, User) {
+  .controller('StandingsCtrl', function ($scope, $http) {
     $scope.errors = {};
 
-
-    $scope.userPoints = [];
 
     // get all users from the back-end
     $http.get('/api/users').success(function(users) {
       $scope.users = users;
 
-      for (var index = 0; index < $scope.users.length; ++index) {
-        var user = $scope.users[index];
-        $scope.userPoints[user._id] = 0;
-      }
-    });
-
-    // get all picks from the back-end
-    /*
-    $http.get('/api/picks').success(function(picks) {
-
-      for (var pick in picks) {
-        if(picks[pick].points !== undefined) {
-          $scope.userPoints[picks[pick].user] += picks[pick].points;
+      // get all picks from the back-end
+      $http.get('/api/picks').success(function(picks) {
+        for (var pick in picks) {
+          if(picks[pick].points !== undefined) {
+            // update $scope.users[].points
+            for (var i = 0; i < $scope.users.length; i++) {
+              if (picks[pick].user === $scope.users[i]._id) {
+                $scope.users[i].points += picks[pick].points;
+              }
+            }
+          }
         }
-      }
-      //console.log($scope.userPoints);
+      });
     });
-    */
 
-    //@todo: Get user name and points into one array and sort by points.
-    //$scope.userPoints.sort();
 
     $scope.currentStanding = function() {
       $scope.matchNumberForStanding = 1;
