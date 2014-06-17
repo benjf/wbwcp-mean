@@ -5,8 +5,6 @@
     </li>
     <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
     <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-    <li ng-show="currentUser" ng-class="{active: isActive('/standings')}"><a href="/standings">Standings</a></li>
-    <li ng-show="currentUser" ng-class="{active: isActive('/matches')}"><a href="/matches">Matches</a></li>
     <li ng-show="currentUser" ng-class="{active: isActive('/settings')}"><a href="/settings">Settings</a></li>
     <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
   </ul>

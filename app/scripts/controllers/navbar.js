@@ -5,6 +5,14 @@ angular.module('wbwcpNgApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'Standings',
+      'link': '/standings'
+    },
+    {
+      'title': 'Matches',
+      'link': '/matches'
     }];
     
     $scope.logout = function() {

@@ -1,99 +1,6 @@
 'use strict';
 
 angular.module('wbwcpNgApp')
-  .filter('getPoints', function() {
-    return function(input, args) {
-      var points;
-      // input = match.result
-      // args = pick.choice
-      switch(input) {
-        case 'w+2:1':
-          switch(args) {
-            case 'w+2:1':
-              points = 6;
-              break;
-            case 'w:1':
-              points = 2;
-              break;
-            case 'd':
-              points = -1;
-              break;
-            case 'w:2':
-            case 'w+2:2':
-              points = -2;
-              break;
-          }
-          break;
-        case 'w:1':
-          switch(args) {
-            case 'w:1':
-              points = 4;
-              break;
-            case 'w+2:1':
-              points = 3;
-              break;
-            case 'd':
-              points = 0;
-              break;
-            case 'w:2':
-            case 'w+2:2':
-              points = -1;
-              break;
-          }
-          break;
-        case 'd':
-          switch(args) {
-            case 'd':
-              points = 2;
-              break;
-            case 'w:1':
-            case 'w:2':
-              points = 0;
-              break;
-            case 'w+2:1':
-            case 'w+2:2':
-              points = -1;
-              break;
-          }
-          break;
-        case 'w:2':
-          switch(args) {
-            case 'w:2':
-              points = 4;
-              break;
-            case 'w+2:2':
-              points = 3;
-              break;
-            case 'd':
-              points = 0;
-              break;
-            case 'w+2:1':
-            case 'w:1':
-              points = -1;
-              break;
-          }
-          break;
-        case 'w+2:2':
-          switch(args) {
-            case 'w+2:2':
-              points = 6;
-              break;
-            case 'w:2':
-              points = 2;
-              break;
-            case 'd':
-              points = -1;
-              break;
-            case 'w+2:1':
-            case 'w:1':
-              points = -2;
-              break;
-          }
-      }
-      // return points
-      return points;
-    };
-  })
   .controller('MatchesCtrl', function ($scope, $http, User, Auth) {
     $scope.errors = {};
 
@@ -173,5 +80,5 @@ angular.module('wbwcpNgApp')
     $scope.beforeKOroundCutoff = Date.now() < 1403971200000 ? true : false; // Before match 49.
 
     // Identify admin users.
-    $scope.isAdmin = Auth.isAdmin() ? true : false;
+    $scope.isAdmin = (Auth.isLoggedIn() && Auth.isAdmin()) ? true : false;
   });

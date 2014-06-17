@@ -27,13 +27,11 @@ angular.module('wbwcpNgApp', [
       })
       .when('/standings', {
         templateUrl: 'partials/standings',
-        controller: 'StandingsCtrl',
-        authenticate: true
+        controller: 'StandingsCtrl'
       })
       .when('/matches', {
         templateUrl: 'partials/matches',
-        controller: 'MatchesCtrl',
-        authenticate: true
+        controller: 'MatchesCtrl'
       })
       .when('/match/edit/:id', {
         templateUrl: 'partials/matchedit',
