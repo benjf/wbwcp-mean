@@ -4,19 +4,19 @@
   <div class="col-sm-12">
     <h1>Current Standings</h1>
 <!--     <h1>Standings after: <select ng-change="changeStanding()" ng-model="currentStanding" ng-options="(match.matchNumber) for match in matches track by match._id"></select> matches</h1> -->
-  	<!-- standings table -->
-  	<table class="table table-striped table-bordered table-hover">
-  		<tr>
-  			<th>Team - User</th>
-  			<th>Points</th>
-  		</tr>
-  		<tr class="user" ng-repeat="user in users">
-  			<td>{{ user.teamName +' - '+ user.name }}</td>
-  			<td>{{ userPoints[user._id] }}</td>
-  		</tr>
+    <!-- standings table -->
+    <table class="table table-striped table-bordered table-hover">
+      <tr>
+        <th>Team - User</th>
+        <th>Points</th>
+      </tr>
+      <tr class="user" ng-repeat="user in users | orderBy:'-points'">
+        <td>{{ user.teamName +' - '+ user.name }}</td>
+        <td>{{ user.points }}</td>
+      </tr>
 
-  	</table>
-  	
+    </table>
+    
   </div>
  </div>
 

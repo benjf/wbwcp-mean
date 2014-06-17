@@ -18,6 +18,7 @@ angular.module('wbwcpNgApp')
     });
 
     // get all picks from the back-end
+    /*
     $http.get('/api/picks').success(function(picks) {
 
       for (var pick in picks) {
@@ -27,6 +28,7 @@ angular.module('wbwcpNgApp')
       }
       //console.log($scope.userPoints);
     });
+    */
 
     //@todo: Get user name and points into one array and sort by points.
     //$scope.userPoints.sort();
