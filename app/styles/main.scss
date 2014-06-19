@@ -110,3 +110,20 @@ p#pick-meter {
 .nav-tabs a {
   cursor: pointer;
 }
+
+/* scrollspy sticky 'pickNav' */
+#pickNav {
+  height: 40px;
+  text-align: center;
+}
+#pickNav h1.fixed {
+  position: fixed;
+  margin: 0 0 10px 0;
+  width: 700px;
+  text-align: center;
+  padding: 10px;
+  background: #FFF;
+  box-shadow: 0 4px 8px -6px #000;
+  top: 0;
+  z-index: 99;
+}
