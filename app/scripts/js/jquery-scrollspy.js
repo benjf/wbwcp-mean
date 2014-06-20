@@ -30,7 +30,8 @@
               var $container = $(o.container);
               var mode = o.mode;
               var buffer = o.buffer;
-              var enters = leaves = 0;
+              var enters = 0;
+              var leaves = 0;
               var inside = false;
                             
               /* add listener to container */
