@@ -33,14 +33,15 @@ What works:
 * User login; update password, name and team name
 * Select match "choices" for first-round games.
 * View match "choices" for other users.
+* View standings page of all users.
+* Basic UI to add site news.
 * 'edit Match' form
   * Calculate points/pick after Match update
 
 To Do:
 * Password reset (you currently need to know the old one, and be logged in, to create a new one)
 * User signup captcha/token/something to prevent spam registrations. Even a hard-coded "invite/registration code"
-* Create Standings page
-* Create UI for WB News on home page
+* Knock-out round logic and UI
 * Timezone toggle?
 * Mad UI/UX love!
  

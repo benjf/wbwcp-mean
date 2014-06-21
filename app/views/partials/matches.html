@@ -22,7 +22,7 @@
           <!-- ng-repeat for Match -->
           <div class="match clearfix" ng-repeat="match in firstround">
             
-            <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
+            <h2>{{ match.datetime | date : 'EEE, MMMM d' }}</h2>
             
             <form class="form" name="pickForm" novalidate>
               <!-- left "box" -->
@@ -70,39 +70,400 @@
 
         <!-- knock-out round -->
         <div ng-switch-when='finals'>
-          <!-- ng-repeat for Match -->
-          <div class="match clearfix" ng-repeat="match in finals">
-            
-            <h2>{{ match.datetime | date : 'MMMM d' }}</h2>
           
-            <!-- left "box" -->
-            <div class="col-sm-4">
-              <img src="/images/Flags/flags_iso/128/{{ match.team1.flagImage }}" alt="{{ match.team1.code.toUpperCase() }}" /><br />
-              {{ match.team1.name }}<br />
-              <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit">Win</button>
-            </div>
-            <!-- middle "box" -->
-            <div class="col-sm-3">
-              Round: {{ match.round }}
-              <p class="matchtime" ng-hide="match.result">{{ match.datetime | date : 'h:mma' }} (Your time)</p>
-              <p class="marchresult" ng-show="match.result">Score: {{ match.score1 }} - {{ match.score2 }}</p>
-              <p ng-hide="beforeKOroundCutoff"><strong>
-                Pick: {{ currentPicks[match._id] }}
-                <span ng-show="match.result">
-                  <br />Result: {{ match.result }}
-                  <br />Points awarded: {{ currentPoints[match._id] }}
-                </span>
-              </strong></p>
-            </div>
-            <!-- right "box" -->
-            <div class="col-sm-4">
-              <img src="/images/Flags/flags_iso/128/{{ match.team2.flagImage }}" alt="{{ match.team2.code.toUpperCase() }}" /><br />
-              {{ match.team2.name }}<br />
-              <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit">Win</button>
-            </div>
+          <table>
+            <tr>
+              <!-- Left side round of 16 -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[0].matchNumber }}">
+                  Match #{{ finals[0].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[0]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[0].team1.flagImage }}" alt="{{ finals[0].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[0].result">{{ finals[0].score1 }}</span><br />
+                  {{ finals[0].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[0].result">{{ finals[0].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[0].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[0]._id] == finals[0].team1.code}" ng-click="savePick(currentUser._id, finals[0]._id, finals[0].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[0]._id] }}
+                    <span ng-show="finals[0].result">
+                      <br />Result: {{ finals[0].result }}
+                      <br />Points awarded: {{ currentPoints[finals[0]._id] }}
+                    </span>
+                  </strong></p>
 
-          </div><!-- match -->
-        </div>
+                  {{ finals[0].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[0].team2.flagImage }}" alt="{{ finals[0].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[0].result">{{ finals[0].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[0]._id] == finals[0].team2.code}" ng-click="savePick(currentUser._id, finals[0]._id, finals[0].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[1].matchNumber }}">
+                  Match #{{ finals[1].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[1]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[1].team1.flagImage }}" alt="{{ finals[1].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[1].result">{{ finals[1].score1 }}</span><br />
+                  {{ finals[1].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[1].result">{{ finals[1].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[1].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[1]._id] == finals[1].team1.code}" ng-click="savePick(currentUser._id, finals[1]._id, finals[1].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[1]._id] }}
+                    <span ng-show="finals[1].result">
+                      <br />Result: {{ finals[1].result }}
+                      <br />Points awarded: {{ currentPoints[finals[1]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[1].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[1].team2.flagImage }}" alt="{{ finals[1].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[1].result">{{ finals[1].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[1]._id] == finals[1].team2.code}" ng-click="savePick(currentUser._id, finals[1]._id, finals[1].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[4].matchNumber }}">
+                  Match #{{ finals[4].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[4]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[4].team1.flagImage }}" alt="{{ finals[4].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[4].result">{{ finals[4].score1 }}</span><br />
+                  {{ finals[4].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[4].result">{{ finals[4].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[4].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[4]._id] == finals[4].team1.code}" ng-click="savePick(currentUser._id, finals[4]._id, finals[4].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[4]._id] }}
+                    <span ng-show="finals[4].result">
+                      <br />Result: {{ finals[4].result }}
+                      <br />Points awarded: {{ currentPoints[finals[4]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[4].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[4].team2.flagImage }}" alt="{{ finals[4].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[4].result">{{ finals[4].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[4]._id] == finals[4].team2.code}" ng-click="savePick(currentUser._id, finals[4]._id, finals[4].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[5].matchNumber }}">
+                  Match #{{ finals[5].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[5]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[5].team1.flagImage }}" alt="{{ finals[5].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[5].result">{{ finals[5].score1 }}</span><br />
+                  {{ finals[5].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[5].result">{{ finals[5].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[5].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[5]._id] == finals[5].team1.code}" ng-click="savePick(currentUser._id, finals[5]._id, finals[5].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[5]._id] }}
+                    <span ng-show="finals[5].result">
+                      <br />Result: {{ finals[5].result }}
+                      <br />Points awarded: {{ currentPoints[finals[5]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[5].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[5].team2.flagImage }}" alt="{{ finals[5].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[5].result">{{ finals[5].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[5]._id] == finals[5].team2.code}" ng-click="savePick(currentUser._id, finals[5]._id, finals[5].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Left side Quarter-finals -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[8].matchNumber }}">
+                  Match #{{ finals[8].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[8]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[8].team1.flagImage }}" alt="{{ finals[8].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[8].result">{{ finals[8].score1 }}</span><br />
+                  {{ finals[8].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[8].result">{{ finals[8].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[8].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[8]._id] == finals[8].team1.code}" ng-click="savePick(currentUser._id, finals[8]._id, finals[8].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[8]._id] }}
+                    <span ng-show="finals[8].result">
+                      <br />Result: {{ finals[8].result }}
+                      <br />Points awarded: {{ currentPoints[finals[8]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[8].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[8].team2.flagImage }}" alt="{{ finals[8].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[8].result">{{ finals[8].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[8]._id] == finals[8].team2.code}" ng-click="savePick(currentUser._id, finals[8]._id, finals[8].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[9].matchNumber }}">
+                  Match #{{ finals[9].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[9]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[9].team1.flagImage }}" alt="{{ finals[9].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[9].result">{{ finals[9].score1 }}</span><br />
+                  {{ finals[9].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[9].result">{{ finals[9].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[9].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[9]._id] == finals[9].team1.code}" ng-click="savePick(currentUser._id, finals[9]._id, finals[9].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[9]._id] }}
+                    <span ng-show="finals[9].result">
+                      <br />Result: {{ finals[9].result }}
+                      <br />Points awarded: {{ currentPoints[finals[9]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[9].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[9].team2.flagImage }}" alt="{{ finals[9].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[9].result">{{ finals[9].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[9]._id] == finals[9].team2.code}" ng-click="savePick(currentUser._id, finals[9]._id, finals[9].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Left side Semi-final -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[12].matchNumber }}">
+                  Match #{{ finals[12].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[12]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[12].team1.flagImage }}" alt="{{ finals[12].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[12].result">{{ finals[12].score1 }}</span><br />
+                  {{ finals[12].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[12].result">{{ finals[12].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[12].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[12]._id] == finals[12].team1.code}" ng-click="savePick(currentUser._id, finals[12]._id, finals[12].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[12]._id] }}
+                    <span ng-show="finals[12].result">
+                      <br />Result: {{ finals[12].result }}
+                      <br />Points awarded: {{ currentPoints[finals[12]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[12].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[12].team2.flagImage }}" alt="{{ finals[12].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[12].result">{{ finals[12].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[12]._id] == finals[12].team2.code}" ng-click="savePick(currentUser._id, finals[12]._id, finals[12].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Finals (center column) -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[15].matchNumber }}">
+                  Match #{{ finals[15].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[15]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[15].team1.flagImage }}" alt="{{ finals[15].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[15].result">{{ finals[15].score1 }}</span><br />
+                  {{ finals[15].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[15].result">{{ finals[15].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[15].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[15]._id] == finals[15].team1.code}" ng-click="savePick(currentUser._id, finals[15]._id, finals[15].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[15]._id] }}
+                    <span ng-show="finals[15].result">
+                      <br />Result: {{ finals[15].result }}
+                      <br />Points awarded: {{ currentPoints[finals[15]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[15].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[15].team2.flagImage }}" alt="{{ finals[15].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[15].result">{{ finals[15].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[15]._id] == finals[15].team2.code}" ng-click="savePick(currentUser._id, finals[15]._id, finals[15].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[14].matchNumber }}">
+                  Match #{{ finals[14].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[14]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[14].team1.flagImage }}" alt="{{ finals[14].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[14].result">{{ finals[14].score1 }}</span><br />
+                  {{ finals[14].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[14].result">{{ finals[14].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[14].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[14]._id] == finals[14].team1.code}" ng-click="savePick(currentUser._id, finals[14]._id, finals[14].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[14]._id] }}
+                    <span ng-show="finals[14].result">
+                      <br />Result: {{ finals[14].result }}
+                      <br />Points awarded: {{ currentPoints[finals[14]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[14].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[14].team2.flagImage }}" alt="{{ finals[14].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[14].result">{{ finals[14].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[14]._id] == finals[14].team2.code}" ng-click="savePick(currentUser._id, finals[14]._id, finals[14].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Right side Semi-final -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[13].matchNumber }}">
+                  Match #{{ finals[13].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[13]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[13].team1.flagImage }}" alt="{{ finals[13].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[13].result">{{ finals[13].score1 }}</span><br />
+                  {{ finals[13].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[13].result">{{ finals[13].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[13].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[13]._id] == finals[13].team1.code}" ng-click="savePick(currentUser._id, finals[13]._id, finals[13].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[13]._id] }}
+                    <span ng-show="finals[13].result">
+                      <br />Result: {{ finals[13].result }}
+                      <br />Points awarded: {{ currentPoints[finals[13]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[13].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[13].team2.flagImage }}" alt="{{ finals[13].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[13].result">{{ finals[13].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[13]._id] == finals[13].team2.code}" ng-click="savePick(currentUser._id, finals[13]._id, finals[13].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Right side Quarter-finals -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[10].matchNumber }}">
+                  Match #{{ finals[10].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[10]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[10].team1.flagImage }}" alt="{{ finals[10].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[10].result">{{ finals[10].score1 }}</span><br />
+                  {{ finals[10].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[10].result">{{ finals[10].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[10].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[10]._id] == finals[10].team1.code}" ng-click="savePick(currentUser._id, finals[10]._id, finals[10].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[10]._id] }}
+                    <span ng-show="finals[10].result">
+                      <br />Result: {{ finals[10].result }}
+                      <br />Points awarded: {{ currentPoints[finals[10]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[10].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[10].team2.flagImage }}" alt="{{ finals[10].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[10].result">{{ finals[10].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[10]._id] == finals[10].team2.code}" ng-click="savePick(currentUser._id, finals[10]._id, finals[10].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[11].matchNumber }}">
+                  Match #{{ finals[11].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[11]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[11].team1.flagImage }}" alt="{{ finals[11].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[11].result">{{ finals[11].score1 }}</span><br />
+                  {{ finals[11].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[11].result">{{ finals[11].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[11].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[11]._id] == finals[11].team1.code}" ng-click="savePick(currentUser._id, finals[11]._id, finals[11].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[11]._id] }}
+                    <span ng-show="finals[11].result">
+                      <br />Result: {{ finals[11].result }}
+                      <br />Points awarded: {{ currentPoints[finals[11]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[11].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[11].team2.flagImage }}" alt="{{ finals[11].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[11].result">{{ finals[11].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[11]._id] == finals[11].team2.code}" ng-click="savePick(currentUser._id, finals[11]._id, finals[11].team2.code)">Win</button>
+                </div>
+              </td>
+              <!-- Right side round of 16 -->
+              <td class="finals-col">
+                <div class="match" id="match-{{ finals[2].matchNumber }}">
+                  Match #{{ finals[2].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[2]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[2].team1.flagImage }}" alt="{{ finals[2].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[2].result">{{ finals[2].score1 }}</span><br />
+                  {{ finals[2].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[2].result">{{ finals[2].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[2].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[2]._id] == finals[2].team1.code}" ng-click="savePick(currentUser._id, finals[2]._id, finals[2].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[2]._id] }}
+                    <span ng-show="finals[2].result">
+                      <br />Result: {{ finals[2].result }}
+                      <br />Points awarded: {{ currentPoints[finals[2]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[2].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[2].team2.flagImage }}" alt="{{ finals[2].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[2].result">{{ finals[2].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[2]._id] == finals[2].team2.code}" ng-click="savePick(currentUser._id, finals[2]._id, finals[2].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[3].matchNumber }}">
+                  Match #{{ finals[3].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[3]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[3].team1.flagImage }}" alt="{{ finals[3].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[3].result">{{ finals[3].score1 }}</span><br />
+                  {{ finals[3].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[3].result">{{ finals[3].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[3].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[3]._id] == finals[3].team1.code}" ng-click="savePick(currentUser._id, finals[3]._id, finals[3].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[3]._id] }}
+                    <span ng-show="finals[3].result">
+                      <br />Result: {{ finals[3].result }}
+                      <br />Points awarded: {{ currentPoints[finals[3]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[3].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[3].team2.flagImage }}" alt="{{ finals[3].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[3].result">{{ finals[3].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[3]._id] == finals[3].team2.code}" ng-click="savePick(currentUser._id, finals[3]._id, finals[3].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[6].matchNumber }}">
+                  Match #{{ finals[6].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[6]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[6].team1.flagImage }}" alt="{{ finals[6].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[6].result">{{ finals[6].score1 }}</span><br />
+                  {{ finals[6].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[6].result">{{ finals[6].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[6].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[6]._id] == finals[6].team1.code}" ng-click="savePick(currentUser._id, finals[6]._id, finals[6].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[6]._id] }}
+                    <span ng-show="finals[6].result">
+                      <br />Result: {{ finals[6].result }}
+                      <br />Points awarded: {{ currentPoints[finals[6]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[6].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[6].team2.flagImage }}" alt="{{ finals[6].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[6].result">{{ finals[6].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[6]._id] == finals[6].team2.code}" ng-click="savePick(currentUser._id, finals[6]._id, finals[6].team2.code)">Win</button>
+                </div>
+                <div class="match" id="match-{{ finals[7].matchNumber }}">
+                  Match #{{ finals[7].matchNumber }}<br />
+                  <div ng-show="isAdmin"><a href="match/edit/{{ finals[7]._id }}">Edit Match</a></div>
+                  <img src="/images/Flags/flags_iso/64/{{ finals[7].team1.flagImage }}" alt="{{ finals[7].team1.code.toUpperCase() }}" /><span class="finals-score1" ng-show="finals[7].result">{{ finals[7].score1 }}</span><br />
+                  {{ finals[7].team1.name }}<br />
+                  <span class="matchtime" ng-hide="finals[7].result">{{ finals[7].datetime | date : 'h:mma' }}</span><br />
+                  {{ finals[7].datetime | date : 'EEE, MMMM d' }}<br />
+                
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit" ng-class="{'btn-success': currentPicks[finals[7]._id] == finals[7].team1.code}" ng-click="savePick(currentUser._id, finals[7]._id, finals[7].team1.code)">Win</button>
+                  
+                  <p ng-hide="beforeKOroundCutoff"><strong>
+                    Pick: {{ currentPicks[finals[7]._id] }}
+                    <span ng-show="finals[7].result">
+                      <br />Result: {{ finals[7].result }}
+                      <br />Points awarded: {{ currentPoints[finals[7]._id] }}
+                    </span>
+                  </strong></p>
+
+                  {{ finals[7].team2.name }}<br />
+                  <img src="/images/Flags/flags_iso/64/{{ finals[7].team2.flagImage }}" alt="{{ finals[7].team2.code.toUpperCase() }}" /><span class="finals-score2" ng-show="finals[7].result">{{ finals[7].score2 }}</span><br />
+                    
+                  <button ng-show="afterKOroundOpen && beforeKOroundCutoff" class="btn btn-sm btn-primary" type="submit"  ng-class="{'btn-success': currentPicks[finals[7]._id] == finals[7].team2.code}" ng-click="savePick(currentUser._id, finals[7]._id, finals[7].team2.code)">Win</button>
+                </div>
+              </td>
+            </tr>
+          </table>
 
       </div><!-- ng-switch -->
     </div><!-- tab-content -->

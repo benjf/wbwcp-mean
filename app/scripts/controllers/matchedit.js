@@ -8,6 +8,42 @@ angular.module('wbwcpNgApp')
     var matchId = $routeParams.id;
     $http.get('/api/match/' + matchId).success(function(match) {
       $scope.matchEdit = match[0];
+      // set up 'results' select options
+      if ($scope.matchEdit.matchNumber <= 48) {
+        $scope.results = [
+          {
+            name: 'Team 1 by 2+ goals',
+            value: 'w+2:1'
+          },
+          {
+            name: 'Team 1 by 1 goal',
+            value: 'w:1'
+          },
+          {
+            name: 'Draw',
+            value: 'd'
+          },
+          {
+            name: 'Team 2 by 1 goal',
+            value: 'w:2'
+          },
+          {
+            name: 'Team 2 by 2+ goals',
+            value: 'w+2:2'
+          }
+        ];
+      } else {
+        $scope.results = [
+          {
+            name: $scope.matchEdit.team1.name,
+            value: $scope.matchEdit.team1.code
+          },
+          {
+            name: $scope.matchEdit.team2.name,
+            value: $scope.matchEdit.team2.code
+          }
+        ];
+      }
     });
 
     // get all teams for select options
@@ -21,29 +57,6 @@ angular.module('wbwcpNgApp')
     // set up 'round' select options
     $scope.rounds = ['1', 'r16', 'quarters', 'semis', 'thirdplace', 'final'];
 
-    // set up 'results' select options
-    $scope.results = [
-      {
-        name: 'Team 1 by 2+ goals',
-        value: 'w+2:1'
-      },
-      {
-        name: 'Team 1 by 1 goal',
-        value: 'w:1'
-      },
-      {
-        name: 'Draw',
-        value: 'd'
-      },
-      {
-        name: 'Team 2 by 1 goal',
-        value: 'w:2'
-      },
-      {
-        name: 'Team 2 by 2+ goals',
-        value: 'w+2:2'
-      }
-    ];
 
     $scope.saveMatch = function(form) {
       $scope.submitted = true;
