@@ -13,12 +13,15 @@
     </ul>
 
     <div class="tab-content">
-      Team/Country (<a href="http://www.fifa.com/worldranking/index.html" target="_blank">FIFA ranking</a>)
+      <p>Team/Country (<a href="http://www.fifa.com/worldranking/index.html" target="_blank">FIFA ranking</a>)</p>
       <div ng-switch='activeTab'>
 
         <!-- round 1 -->
         <div ng-switch-when='group'>
           <p id="pick-meter">You've picked: <strong>{{ pickCount }} / 48</strong> First Round Matches</p>
+
+          <p ng-show="beforeFirstroundCutoff" id="timecheck">Submit your picks: <strong>before {{ beginFirstMatch | date : 'EEE, MMMM d h:mma' }} (Your time)</strong></p>
+
           <!-- ng-repeat for Match -->
           <div class="match clearfix" ng-repeat="match in firstround">
             
@@ -70,6 +73,8 @@
 
         <!-- knock-out round -->
         <div ng-switch-when='finals'>
+
+          <p ng-show="beforeKOroundCutoff" id="timecheck">Submit your picks <strong>after {{ endLastFirstroundMatch | date : 'EEE, MMMM d h:mma' }}</strong> and <strong>before {{ beginFirstKOroundMatch | date : 'EEE, MMMM d h:mma' }} (Your time)</strong></p>
           
           <table>
             <tr>
