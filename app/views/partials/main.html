@@ -5,6 +5,8 @@
 
   <p>The wbwcp is software for a small group of people to compare footballing wits by picking World Cup match results. It's not meant for monied betting, which is often frowned-upon.</p>
 
+  <p><a class="fragment-link" ng-click="scrollTo('toc-how')">See how it works</a></p>
+
 </div>
 
 <div class="jumbotron">
@@ -22,13 +24,13 @@
   <ol>
     <li>First Round
       <ul>
-        <li><a href="#toc-first">Read the first round explanation below</a></li>
+        <li><a class="fragment-link" ng-click="scrollTo('toc-first')">Read the first round explanation below</a></li>
         <li><a href="matches">Submit your picks by {{ 1402603200000 | date : 'MMM dd h:mma' }} (your time)</a></li>
       </ul>
     </li>
     <li>Knockout Round
       <ul>
-        <li><a href="#toc-ko">Read the knockout round explanation below</a></li>
+        <li><a class="fragment-link" ng-click="scrollTo('toc-ko')">Read the knockout round explanation below</a></li>
         <li><a href="matches">Submit your picks between {{ 1403820000000 | date : 'MMM dd h:mma' }} and {{ 1403971200000 | date : 'MMM dd h:mma' }} (your time)</a></li>
       </ul>
     </li>
