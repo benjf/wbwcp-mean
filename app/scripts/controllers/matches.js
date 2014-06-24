@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wbwcpNgApp')
-  .controller('MatchesCtrl', function ($scope, $http, User, Auth) {
+  .controller('MatchesCtrl', function ($scope, $http, User, Auth, $filter) {
     $scope.errors = {};
 
     // Set up data for the /matches page
@@ -16,6 +16,11 @@ angular.module('wbwcpNgApp')
     // get all users from the back-end
     $http.get('/api/users').success(function(users) {
       $scope.users = users;
+    });
+
+    // get all teams
+    $http.get('/api/teams').success(function(teams) {
+      $scope.teams = teams;
     });
 
     // get picks for the currently displayed user
@@ -70,6 +75,75 @@ angular.module('wbwcpNgApp')
         // send picks to the front-end
         $scope.currentPicks = rePicks;
         $scope.pickCount = picks.length;
+        
+        // find the new Team data to shove into $scope.finals
+        var newTeam = $filter('filter')($scope.teams, {code: choice}, true);
+        //console.log(newTeam[0]);
+        // based on match._id, update $scope.finals with new team info above
+        var thisMatch = $filter('filter')($scope.finals, {_id: matchId}, true);
+        //console.log(thisMatch[0]);
+        //console.log($scope.finals);
+        switch(thisMatch[0].matchNumber) {
+          case 49:
+            // update match #57, team1
+            $scope.finals[8].team1 = newTeam[0];
+            break;
+          case 50:
+            // update match #57, team2
+            $scope.finals[8].team2 = newTeam[0];
+            break;
+          case 51:
+            // update match #59, team1
+            $scope.finals[10].team1 = newTeam[0];
+            break;
+          case 52:
+            // update match #59, team2
+            $scope.finals[10].team2 = newTeam[0];
+            break;
+          case 53:
+            // update match #58, team1
+            $scope.finals[9].team1 = newTeam[0];
+            break;
+          case 54:
+            // update match #58, team2
+            $scope.finals[9].team2 = newTeam[0];
+            break;
+          case 55:
+            // update match #60, team1
+            $scope.finals[11].team1 = newTeam[0];
+            break;
+          case 56:
+            // update match #60, team2
+            $scope.finals[11].team2 = newTeam[0];
+            break;
+          case 57:
+            // update match #61, team1
+            $scope.finals[12].team1 = newTeam[0];
+            break;
+          case 58:
+            // update match #61, team2
+            $scope.finals[12].team2 = newTeam[0];
+            break;
+          case 59:
+            // update match #62, team1
+            $scope.finals[13].team1 = newTeam[0];
+            break;
+          case 60:
+            // update match #62, team2
+            $scope.finals[13].team2 = newTeam[0];
+            break;
+          case 61:
+            // update match #64, team1
+            $scope.finals[15].team1 = newTeam[0];
+            //TODO: put loser into 3rd place game
+            break;
+          case 62:
+            // update match #64, team2
+            $scope.finals[15].team2 = newTeam[0];
+            //TODO: put loser into 3rd place game
+            break;
+        }
+        //console.log($scope.finals);
       });
     };
 
@@ -88,7 +162,7 @@ angular.module('wbwcpNgApp')
       for (var i = 49; i < 57; i++) {
         // If a choice record exists for this user for match XX and YY...
       }
-    }
+    };
 
     // Do some time checks to determine if first/KO round picks can be submitted?
     //@todo: Instead of hard-coding the appropriate times here, we should move them to a config file.
