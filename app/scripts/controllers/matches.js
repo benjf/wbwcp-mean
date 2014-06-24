@@ -73,6 +73,23 @@ angular.module('wbwcpNgApp')
       });
     };
 
+    // Determine if a given match should be "enabled" so that users can submit picks.
+    $scope.enableKOpicks = function() {
+      // Array of KO stage matches to be either enabled or disabled.
+      $scope.KOpicksEnabled = [];
+
+      // For the round of 16, we enable if both teams are not the generic 'TBD' placeholder.
+      for (var i = 49; i < 57; i++) {
+        // @todo: replace finals[i] with the actual match record.
+        //$scope.KOpicksEnabled[i] = finals[i].team1.name != 'TBD' && finals[i].team2.name != 'TBD' ? true : false;
+      }
+
+      // For all other matches, we enable if the user has picked results for the two matches that feed into this one.
+      for (var i = 49; i < 57; i++) {
+        // If a choice record exists for this user for match XX and YY...
+      }
+    }
+
     // Do some time checks to determine if first/KO round picks can be submitted?
     //@todo: Instead of hard-coding the appropriate times here, we should move them to a config file.
     $scope.beginFirstMatch = 1402603200000;
