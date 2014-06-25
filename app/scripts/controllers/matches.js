@@ -55,27 +55,34 @@ angular.module('wbwcpNgApp')
       User.get({ _id: $scope.currentUser._id }, function() {
         if ($scope.currentUser._id) {
           $http.get('/api/picks/' + $scope.currentUser._id).success(function(picks) {
-            // array[pick.match] = pick.choice
-            var rePicks = [];
-            var rePoints = [];
-            for (var pick in picks) {
-              rePicks[picks[pick].match] = picks[pick].choice;
-              rePoints[picks[pick].match] = picks[pick].points;
+            // reset $scope.finals when changing users
+            $http.get('/api/matches').success(function(matches) {
+              $scope.finals = matches.slice(48);
+              console.log('foo');
 
-              // for finals matches, shove picks data/teams into $scope.finals[i]
-              var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
-              if (finalsPick[0]) {
-                var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
-                var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
-                if (teamPick[0]) {
-                  $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
+              // array[pick.match] = pick.choice
+              var rePicks = [];
+              var rePoints = [];
+              for (var pick in picks) {
+                rePicks[picks[pick].match] = picks[pick].choice;
+                rePoints[picks[pick].match] = picks[pick].points;
+
+                // for finals matches, shove picks data/teams into $scope.finals[i]
+                var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
+                if (finalsPick[0]) {
+                  console.log('bar');
+                  var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
+                  var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
+                  if (teamPick[0]) {
+                    $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
+                  }
                 }
               }
-            }
-            // send picks to the front-end
-            $scope.currentPicks = rePicks;
-            $scope.currentPoints = rePoints;
-            $scope.pickCount = picks.length;
+              // send picks to the front-end
+              $scope.currentPicks = rePicks;
+              $scope.currentPoints = rePoints;
+              $scope.pickCount = picks.length;
+            });
           });
         }
       });
