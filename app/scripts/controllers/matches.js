@@ -61,6 +61,83 @@ angular.module('wbwcpNgApp')
       });
     };
 
+    $scope.updateKOPick = function(matchNumber, team) {
+      switch(matchNumber) {
+        case 49:
+          // update match #57, team1
+          $scope.finals[8].team1 = team;
+          break;
+        case 50:
+          // update match #57, team2
+          $scope.finals[8].team2 = team;
+          break;
+        case 51:
+          // update match #59, team1
+          $scope.finals[10].team1 = team;
+          break;
+        case 52:
+          // update match #59, team2
+          $scope.finals[10].team2 = team;
+          break;
+        case 53:
+          // update match #58, team1
+          $scope.finals[9].team1 = team;
+          break;
+        case 54:
+          // update match #58, team2
+          $scope.finals[9].team2 = team;
+          break;
+        case 55:
+          // update match #60, team1
+          $scope.finals[11].team1 = team;
+          break;
+        case 56:
+          // update match #60, team2
+          $scope.finals[11].team2 = team;
+          break;
+        case 57:
+          // update match #61, team1
+          $scope.finals[12].team1 = team;
+          break;
+        case 58:
+          // update match #61, team2
+          $scope.finals[12].team2 = team;
+          break;
+        case 59:
+          // update match #62, team1
+          $scope.finals[13].team1 = team;
+          break;
+        case 60:
+          // update match #62, team2
+          $scope.finals[13].team2 = team;
+          break;
+        case 61:
+          // update match #64, team1
+          $scope.finals[15].team1 = team;
+          // put loser into 3rd place game, match #63
+          if (team.code === $scope.finals[12].team1.code) {
+            // team 1 selected, put team 2 in 3rd place game
+            $scope.finals[14].team1 = $scope.finals[12].team2;
+          } else {
+            // team 1 selected, put team 2 in 3rd place game
+            $scope.finals[14].team1 = $scope.finals[12].team1;
+          }
+          break;
+        case 62:
+          // update match #64, team2
+          $scope.finals[15].team2 = team;
+          // put loser into 3rd place game, match #63
+          if (team.code === $scope.finals[13].team1.code) {
+            // team 1 selected, put team 2 in 3rd place game
+            $scope.finals[14].team2 = $scope.finals[13].team2;
+          } else {
+            // team 1 selected, put team 2 in 3rd place game
+            $scope.finals[14].team2 = $scope.finals[13].team1;
+          }
+          break;
+      }
+    };
+
     $scope.savePick = function(userId, matchId, choice) {
       $scope.submitted = true;
       // PUT to /api/picks/userId
@@ -83,66 +160,7 @@ angular.module('wbwcpNgApp')
         var thisMatch = $filter('filter')($scope.finals, {_id: matchId}, true);
         //console.log(thisMatch[0]);
         //console.log($scope.finals);
-        switch(thisMatch[0].matchNumber) {
-          case 49:
-            // update match #57, team1
-            $scope.finals[8].team1 = newTeam[0];
-            break;
-          case 50:
-            // update match #57, team2
-            $scope.finals[8].team2 = newTeam[0];
-            break;
-          case 51:
-            // update match #59, team1
-            $scope.finals[10].team1 = newTeam[0];
-            break;
-          case 52:
-            // update match #59, team2
-            $scope.finals[10].team2 = newTeam[0];
-            break;
-          case 53:
-            // update match #58, team1
-            $scope.finals[9].team1 = newTeam[0];
-            break;
-          case 54:
-            // update match #58, team2
-            $scope.finals[9].team2 = newTeam[0];
-            break;
-          case 55:
-            // update match #60, team1
-            $scope.finals[11].team1 = newTeam[0];
-            break;
-          case 56:
-            // update match #60, team2
-            $scope.finals[11].team2 = newTeam[0];
-            break;
-          case 57:
-            // update match #61, team1
-            $scope.finals[12].team1 = newTeam[0];
-            break;
-          case 58:
-            // update match #61, team2
-            $scope.finals[12].team2 = newTeam[0];
-            break;
-          case 59:
-            // update match #62, team1
-            $scope.finals[13].team1 = newTeam[0];
-            break;
-          case 60:
-            // update match #62, team2
-            $scope.finals[13].team2 = newTeam[0];
-            break;
-          case 61:
-            // update match #64, team1
-            $scope.finals[15].team1 = newTeam[0];
-            //TODO: put loser into 3rd place game
-            break;
-          case 62:
-            // update match #64, team2
-            $scope.finals[15].team2 = newTeam[0];
-            //TODO: put loser into 3rd place game
-            break;
-        }
+        $scope.updateKOPick(thisMatch[0].matchNumber, newTeam[0]);
         //console.log($scope.finals);
       });
     };
