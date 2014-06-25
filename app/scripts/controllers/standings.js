@@ -16,14 +16,43 @@ angular.module('wbwcpNgApp')
             // update $scope.users[].points
             for (var i = 0; i < $scope.users.length; i++) {
               if (picks[pick].user === $scope.users[i]._id) {
+                if (picks[pick].round !== 'ko') {
+                  // first round
+                  if (typeof $scope.users[i].pointsFirst === 'undefined') {
+                    $scope.users[i].pointsFirst = picks[pick].points;
+                  } else {
+                    $scope.users[i].pointsFirst += picks[pick].points;
+                  }
+                } else {
+                  // knockout round
+                  if (typeof $scope.users[i].pointsKO === 'undefined') {
+                    $scope.users[i].pointsKO = picks[pick].points;
+                  } else {
+                    $scope.users[i].pointsKO += picks[pick].points;
+                  }
+                }
+                // total
                 $scope.users[i].points += picks[pick].points;
               }
             }
           }
         }
+        // fill any missing values with 0's
+        for (var user in users) {
+          if (typeof users[user].points === 'undefined') {
+            users[user].points = 0;
+          }
+          if (typeof users[user].pointsFirst === 'undefined') {
+            users[user].pointsFirst = 0;
+          }
+          if (typeof users[user].pointsKO === 'undefined') {
+            users[user].pointsKO = 0;
+          }
+        }
       });
+      // default sort
+      $scope.standingsSort = '-points';
     });
-
 
     $scope.currentStanding = function() {
       $scope.matchNumberForStanding = 1;
