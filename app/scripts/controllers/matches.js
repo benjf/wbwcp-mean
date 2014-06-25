@@ -33,6 +33,16 @@ angular.module('wbwcpNgApp')
           for (var pick in picks) {
             rePicks[picks[pick].match] = picks[pick].choice;
             rePoints[picks[pick].match] = picks[pick].points;
+
+            // for finals matches, shove picks data/teams into $scope.finals[i]
+            var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
+            if (finalsPick[0]) {
+              var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
+              var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
+              if (teamPick[0]) {
+                $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
+              }
+            }
           }
           $scope.currentPicks = rePicks;
           $scope.currentPoints = rePoints;
@@ -51,6 +61,16 @@ angular.module('wbwcpNgApp')
             for (var pick in picks) {
               rePicks[picks[pick].match] = picks[pick].choice;
               rePoints[picks[pick].match] = picks[pick].points;
+
+              // for finals matches, shove picks data/teams into $scope.finals[i]
+              var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
+              if (finalsPick[0]) {
+                var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
+                var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
+                if (teamPick[0]) {
+                  $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
+                }
+              }
             }
             // send picks to the front-end
             $scope.currentPicks = rePicks;
