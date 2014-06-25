@@ -38,7 +38,6 @@ angular.module('wbwcpNgApp')
             var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
             if (finalsPick[0]) {
               var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
-              var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
               if (teamPick[0]) {
                 $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
               }
@@ -58,7 +57,6 @@ angular.module('wbwcpNgApp')
             // reset $scope.finals when changing users
             $http.get('/api/matches').success(function(matches) {
               $scope.finals = matches.slice(48);
-              console.log('foo');
 
               // array[pick.match] = pick.choice
               var rePicks = [];
@@ -70,9 +68,7 @@ angular.module('wbwcpNgApp')
                 // for finals matches, shove picks data/teams into $scope.finals[i]
                 var finalsPick = $filter('filter')($scope.finals, {_id: picks[pick].match}, true);
                 if (finalsPick[0]) {
-                  console.log('bar');
                   var teamPick = $filter('filter')($scope.teams, {code: picks[pick].choice}, true);
-                  var tbdPick = $filter('filter')($scope.teams, {code: 'tbd'}, true);
                   if (teamPick[0]) {
                     $scope.updateKOPick(finalsPick[0].matchNumber, teamPick[0]);
                   }
