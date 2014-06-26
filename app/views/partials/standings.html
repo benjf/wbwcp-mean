@@ -5,18 +5,26 @@
     <h1>Current Standings</h1>
 <!--     <h1>Standings after: <select ng-change="changeStanding()" ng-model="currentStanding" ng-options="(match.matchNumber) for match in matches track by match._id"></select> matches</h1> -->
     <!-- standings table -->
-    <table class="table table-striped table-bordered table-hover">
+    <p>standingsSort = {{ standingsSort }}
+      <br />reverse = {{reverse}}</p>
+    <table class="table standings table-striped table-bordered table-hover">
       <tr>
-        <th>Rank</th>
+        <th class="points">Rank</th>
         <th>Team - User</th>
-        <th>Points</th>
+        <th class="points">First Round<br />
+          (<a href="" ng-click="standingsSort = '-pointsFirst'; reverse=true">Asc</a> | <a href="" ng-click="standingsSort = '-pointsFirst'; reverse=false">Desc</a>)</th>
+        <th class="points">Knock-out Round<br />
+          (<a href="" ng-click="standingsSort = '-pointsKO'; reverse=true">Asc</a> | <a href="" ng-click="standingsSort = '-pointsKO'; reverse=false">Desc</a>)</th>
+        <th class="points">Total<br />
+          (<a href="" ng-click="standingsSort = '-points'; reverse=true">Asc</a> | <a href="" ng-click="standingsSort = '-points'; reverse=false">Desc</a>)</th>
       </tr>
-      <tr class="user" ng-repeat="user in users | orderBy:'-points'">
-        <td>{{ $index + 1 }}</td>
-        <td>{{ user.teamName +' - '+ user.name }}</td>
-        <td>{{ user.points }}</td>
+      <tr class="user" ng-repeat="user in users | orderBy:standingsSort:reverse">
+        <td class="points" data-title="'Rank'">{{ $index + 1 }}</td>
+        <td data-title="'Team - Name'">{{ user.teamName +' - '+ user.name }}</td>
+        <td class="points" data-title="'First'" sortable="'pointsFirst'">{{ user.pointsFirst }}</td>
+        <td class="points" data-title="'Knock-out'" sortable="'pointsKO'">{{ user.pointsKO }}</td>
+        <td class="points" data-title="'Total'" sortable="'points'">{{ user.points }}</td>
       </tr>
-
     </table>
     
   </div>

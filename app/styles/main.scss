@@ -69,7 +69,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 960px;
     }
 
     /* Remove the padding we set earlier */
@@ -130,4 +130,27 @@ p#pick-meter {
 #pickNav h1 select {
   font-size: 13px;
   font-weight: normal;
+}
+
+/* Knock-out round */
+.finals-col {
+  width: 135px;
+  div.match {
+    border: 1px solid lightgray;
+    padding: 0 5px;
+  }
+  div#match-57,
+  div#match-59 {
+    margin-bottom: 290px;
+  }
+  div#match-64 {
+    margin-bottom: 90px;
+  }
+}
+
+/* Standings */
+table.standings {
+  .points {
+    text-align: center;
+  }
 }
