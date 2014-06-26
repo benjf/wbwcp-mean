@@ -89,10 +89,15 @@ angular.module('wbwcpNgApp')
     };
 
     $scope.updateKOPick = function(matchNumber, team) {
+      var tbdTeam = $filter('filter')($scope.teams, {code: 'tbd'}, true);
       switch(matchNumber) {
         case 49:
           // update match #57, team1
           $scope.finals[8].team1 = team;
+          // clear the later games
+          $scope.finals[12].team1 = tbdTeam;
+          //TODO: test finals[x] for user's choice,
+          //  then clear the appropriate finals/3rd place team, if appropriate
           break;
         case 50:
           // update match #57, team2
