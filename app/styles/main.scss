@@ -98,12 +98,20 @@ p#pick-meter {
 }
 
 /* news */
-.jumbotron .news-item p {
+.jumbotron .news-item {
+  margin-bottom: 30px;
+  p {
     font-size: 16px;
-    .news-date {
-        font-style: italic;
-        display: block;
-    }
+  }
+  p.news-date {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-style: italic;
+    font-size: 14px;
+  }
+  h3 {
+    margin-top: 0;
+  }
 }
 
 /* Tabs */

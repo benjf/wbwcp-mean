@@ -13,8 +13,9 @@
   <h2>WBWCP News</h2>
   <div ng-show="isAdmin"><a href="news/create">Add News</a></div>
   <div ng-repeat="thing in awesomeThings" class="news-item">
-      <h4>{{thing.name}}</h4>
-      <p><span class="news-date">{{thing.dateTime | date: 'EEE, MMM d hh:mma'}}</span> {{thing.info}}</p>
+      <p class="news-date">{{thing.dateTime | date: 'EEE, MMM d hh:mma'}}</p>
+      <h3>{{thing.name}}</h3>
+      <p>{{thing.info}}</p>
   </div>
 </div>
 
