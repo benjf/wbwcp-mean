@@ -220,4 +220,5 @@ angular.module('wbwcpNgApp')
 
     // Identify admin users.
     $scope.isAdmin = (Auth.isLoggedIn() && Auth.isAdmin()) ? true : false;
+    $scope.isLoggedIn = (Auth.isLoggedIn()) ? true : false;
   });
