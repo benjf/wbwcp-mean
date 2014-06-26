@@ -5,7 +5,6 @@ angular.module('wbwcpNgApp')
     $scope.errors = {};
 
     // Set up data for the /matches page
-    $scope.activeTab = 'group';
 
     // get all matches from the back-end
     $http.get('/api/matches').success(function(matches) {
@@ -89,59 +88,188 @@ angular.module('wbwcpNgApp')
     };
 
     $scope.updateKOPick = function(matchNumber, team) {
-      var tbdTeam = $filter('filter')($scope.teams, {code: 'tbd'}, true);
+      var tbdTeamArray = $filter('filter')($scope.teams, {code: 'tbd'}, true);
+      var tbdTeam = tbdTeamArray[0];
       switch(matchNumber) {
         case 49:
+          // match #57, old team1
+          var oldTeam = $scope.finals[8].team1;
           // update match #57, team1
           $scope.finals[8].team1 = team;
-          // clear the later games
-          $scope.finals[12].team1 = tbdTeam;
-          //TODO: test finals[x] for user's choice,
-          //  then clear the appropriate finals/3rd place team, if appropriate
+          // clear later games, if appropriate
+          if ($scope.finals[12].team1._id === oldTeam._id) {
+            $scope.finals[12].team1 = tbdTeam;
+          }
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 50:
+          // match #57, old team2
+          var oldTeam = $scope.finals[8].team2;
           // update match #57, team2
           $scope.finals[8].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[12].team1._id === oldTeam._id) {
+            $scope.finals[12].team1 = tbdTeam;
+          }
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 51:
+          // match #59, old team1
+          var oldTeam = $scope.finals[10].team1;
           // update match #59, team1
           $scope.finals[10].team1 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[13].team1._id === oldTeam._id) {
+            $scope.finals[13].team1 = tbdTeam;
+          }
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 52:
+          // match #59, old team2
+          var oldTeam = $scope.finals[10].team2;
           // update match #59, team2
           $scope.finals[10].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[13].team1._id === oldTeam._id) {
+            $scope.finals[13].team1 = tbdTeam;
+          }
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 53:
+          // match #58, old team1
+          var oldTeam = $scope.finals[9].team1;
           // update match #58, team1
           $scope.finals[9].team1 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[12].team2._id === oldTeam._id) {
+            $scope.finals[12].team2 = tbdTeam;
+          }
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 54:
+          // match #58, old team2
+          var oldTeam = $scope.finals[9].team2;
           // update match #58, team2
           $scope.finals[9].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[12].team2._id === oldTeam._id) {
+            $scope.finals[12].team2 = tbdTeam;
+          }
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 55:
+          // match #60, old team1
+          var oldTeam = $scope.finals[11].team1;
           // update match #60, team1
           $scope.finals[11].team1 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[13].team2._id === oldTeam._id) {
+            $scope.finals[13].team2 = tbdTeam;
+          }
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 56:
+          // match #60, old team2
+          var oldTeam = $scope.finals[11].team2;
           // update match #60, team2
           $scope.finals[11].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[13].team2._id === oldTeam._id) {
+            $scope.finals[13].team2 = tbdTeam;
+          }
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 57:
+          // match #61, old team1
+          var oldTeam = $scope.finals[12].team1;
           // update match #61, team1
           $scope.finals[12].team1 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 58:
+          // match #61, old team2
+          var oldTeam = $scope.finals[12].team2;
           // update match #61, team2
           $scope.finals[12].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[14].team1._id === oldTeam._id) {
+            $scope.finals[14].team1 = tbdTeam;
+          }
+          if ($scope.finals[15].team1._id === oldTeam._id) {
+            $scope.finals[15].team1 = tbdTeam;
+          }
           break;
         case 59:
+          // match #62, old team1
+          var oldTeam = $scope.finals[13].team1;
           // update match #62, team1
           $scope.finals[13].team1 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 60:
+          // match #62, old team2
+          var oldTeam = $scope.finals[13].team2;
           // update match #62, team2
           $scope.finals[13].team2 = team;
+          // clear later games, if appropriate
+          if ($scope.finals[14].team2._id === oldTeam._id) {
+            $scope.finals[14].team2 = tbdTeam;
+          }
+          if ($scope.finals[15].team2._id === oldTeam._id) {
+            $scope.finals[15].team2 = tbdTeam;
+          }
           break;
         case 61:
           // update match #64, team1
@@ -222,6 +350,13 @@ angular.module('wbwcpNgApp')
     $scope.beforeFirstroundCutoff = Date.now() < $scope.beginFirstMatch ? true : false; // Before match 1.
     $scope.afterKOroundOpen = Date.now() > $scope.endLastFirstroundMatch ? true : false; // After match 48 + 2 hours.
     $scope.beforeKOroundCutoff = Date.now() < $scope.beginFirstKOroundMatch ? true : false; // Before match 49.
+
+    // set the active tab
+    if ($scope.afterKOroundOpen) {
+      $scope.activeTab = 'finals';
+    } else {
+      $scope.activeTab = 'group';
+    }
 
     // Identify admin users.
     $scope.isAdmin = (Auth.isLoggedIn() && Auth.isAdmin()) ? true : false;
