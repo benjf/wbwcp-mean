@@ -7,6 +7,13 @@ angular.module('wbwcpNgApp')
 
     // get all users from the back-end
     $http.get('/api/users').success(function(users) {
+
+      // initialize point values with 0's
+      for (var j in users) {
+        users[j].points = 0;
+        users[j].pointsFirst = 0;
+        users[j].pointsKO = 0;
+      }
       $scope.users = users;
 
       // get all picks from the back-end
@@ -18,35 +25,15 @@ angular.module('wbwcpNgApp')
               if (picks[pick].user === $scope.users[i]._id) {
                 if (picks[pick].round !== 'ko') {
                   // first round
-                  if (typeof $scope.users[i].pointsFirst === 'undefined') {
-                    $scope.users[i].pointsFirst = picks[pick].points;
-                  } else {
-                    $scope.users[i].pointsFirst += picks[pick].points;
-                  }
+                  $scope.users[i].pointsFirst += picks[pick].points;
                 } else {
                   // knockout round
-                  if (typeof $scope.users[i].pointsKO === 'undefined') {
-                    $scope.users[i].pointsKO = picks[pick].points;
-                  } else {
-                    $scope.users[i].pointsKO += picks[pick].points;
-                  }
+                  $scope.users[i].pointsKO += picks[pick].points;
                 }
                 // total
                 $scope.users[i].points += picks[pick].points;
               }
             }
-          }
-        }
-        // fill any missing values with 0's
-        for (var user in users) {
-          if (typeof users[user].points === 'undefined') {
-            users[user].points = 0;
-          }
-          if (typeof users[user].pointsFirst === 'undefined') {
-            users[user].pointsFirst = 0;
-          }
-          if (typeof users[user].pointsKO === 'undefined') {
-            users[user].pointsKO = 0;
           }
         }
       });
