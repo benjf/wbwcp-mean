@@ -328,6 +328,15 @@
                   </p>
                 </div>
 
+                <div class="match" id="match-{{ finals[15].matchNumber }}">
+                  <p>Semifinals bonus</p>
+                  <p ng-hide="beforeKOroundCutoff"><strong>{{ currentUser.name }}<br />
+                    <span ng-show="finals[12].result">
+                      <br />Points awarded: {{ currentPoints['semifinalsBonus'] }}
+                    </span>
+                  </strong></p>
+                </div>
+
                 <div class="match" id="match-{{ finals[14].matchNumber }}">
                   <p>
                     <div ng-show="isAdmin"><a href="match/edit/{{ finals[14]._id }}">Edit Match</a></div>
