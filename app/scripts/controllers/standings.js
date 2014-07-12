@@ -13,6 +13,7 @@ angular.module('wbwcpNgApp')
         users[j].points = 0;
         users[j].pointsFirst = 0;
         users[j].pointsKO = 0;
+        users[j].semifinalsBonus = 0;
       }
       $scope.users = users;
 
@@ -29,6 +30,20 @@ angular.module('wbwcpNgApp')
                 } else {
                   // knockout round
                   $scope.users[i].pointsKO += picks[pick].points;
+                  // semifinals bonus
+                  if (
+                    (picks[pick].match == '5393f05c0f7fec9d0c05cec1' || // match 57
+                    picks[pick].match == '5393f05c0f7fec9d0c05cec2' || // match 58
+                    picks[pick].match == '5393f05c0f7fec9d0c05cec3' || // match 59
+                    picks[pick].match == '5393f05c0f7fec9d0c05cec4' // match 60
+                    ) && picks[pick].points) {
+                    $scope.users[i].semifinalsBonus += 1;
+                    if ($scope.users[i].semifinalsBonus == 4) {
+                      console.log("Bonus! " + $scope.users[i].name);
+                      $scope.users[i].pointsKO += 4;
+                      $scope.users[i].points += 4;
+                    }
+                  }
                 }
                 // total
                 $scope.users[i].points += picks[pick].points;
