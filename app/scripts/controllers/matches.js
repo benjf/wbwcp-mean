@@ -96,11 +96,12 @@ angular.module('wbwcpNgApp')
 
               // special case: bonus for picking all 4 semifinalists correctly
               $scope.currentPoints['semifinalsBonus'] = 0;
+console.log($scope.currentPoints[$scope.finals[8]._id]);
               if(
-                $scope.currentPoints[$scope.finals[8]._id] != 0 &&
-                $scope.currentPoints[$scope.finals[9]._id] != 0 &&
-                $scope.currentPoints[$scope.finals[10]._id] != 0 &&
-                $scope.currentPoints[$scope.finals[11]._id] != 0
+                (typeof $scope.currentPoints[$scope.finals[8]._id] != 'undefined' && $scope.currentPoints[$scope.finals[8]._id] != 0) &&
+                (typeof $scope.currentPoints[$scope.finals[9]._id] != 'undefined' && $scope.currentPoints[$scope.finals[9]._id] != 0) &&
+                (typeof $scope.currentPoints[$scope.finals[10]._id] != 'undefined' && $scope.currentPoints[$scope.finals[10]._id] != 0) &&
+                (typeof $scope.currentPoints[$scope.finals[11]._id] != 'undefined' && $scope.currentPoints[$scope.finals[11]._id] != 0)
                 ) {
                 $scope.currentPoints['semifinalsBonus'] = 4;
               }
