@@ -39,7 +39,6 @@ angular.module('wbwcpNgApp')
                     ) && picks[pick].points) {
                     $scope.users[i].semifinalsBonus += 1;
                     if ($scope.users[i].semifinalsBonus == 4) {
-                      console.log("Bonus! " + $scope.users[i].name);
                       $scope.users[i].pointsKO += 4;
                       $scope.users[i].points += 4;
                     }
